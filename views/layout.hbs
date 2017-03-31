@@ -4,15 +4,16 @@
     <title>SoftUni Blog</title>
     <link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
     <link rel='stylesheet' href='/stylesheets/style.css' />
-    <script src="/javascripts/jquery-1.10.2.js"></script>
-    <script src="/javascripts/bootstrap.js"></script>
+    <script src="/javascripts/jquery-3.1.1.js"></script>
+    <script src="/javascripts/bootstrap.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 <header>
     <nav class="navbar navbar-inverse navbar-fixed-top text-uppercase">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="index.html">Sausage Fest</a>
+                <a class="navbar-brand" href="index.html">Hackerman Forum</a>
 
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
@@ -28,8 +29,15 @@
                     <li><a href="#">Contacts</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    {{#if user}}
+                    <li><a href="/user/details"><span class="glyphicon glyphicon-user"></span> {{user.fullname}}</a></li>
+                    <li><a href="/article/create"><span class="glyphicon glyphicon-log-in"></span> New Discussion</a></li>
+                    <li><a href="/user/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                    {{/if}}
+                    {{#unless user}}
+                    <li><a href="/user/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                    <li><a href="/user/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    {{/unless}}
                 </ul>
             </div>
         </div>
