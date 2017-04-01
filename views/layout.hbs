@@ -11,10 +11,10 @@
 </head>
 <body>
 <header>
-    <nav class="navbar navbar-inverse navbar-fixed-top text-uppercase">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="/">Hackerman Forum</a>
+                <a class="navbar-brand" href="/">HACKERMAN FORUM</a>
 
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
@@ -24,20 +24,20 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-left">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Discussions</a></li>
-                    <li><a href="#">News</a></li>
-                    <li><a href="#">Contacts</a></li>
+                    <li><a href="/">HOME</a></li>
+                    <li><a href="#">DISCUSSIONS</a></li>
+                    <li><a href="#">NEWS</a></li>
+                    <li><a href="#">CONTACTS</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     {{#if user}}
                     <li><a href="/user/details"><span class="glyphicon glyphicon-user"></span> {{user.fullName}}</a></li>
-                    <li><a href="/discussion/create"><span class="glyphicon glyphicon-log-in"></span> New Discussion</a></li>
-                    <li><a href="/user/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                    <li><a href="/discussion/create"><span class="glyphicon glyphicon-log-in"></span> NEW DISCUSSION</a></li>
+                    <li><a href="/user/logout"><span class="glyphicon glyphicon-log-out"></span> LOGOUT</a></li>
                     {{/if}}
                     {{#unless user}}
-                    <li><a href="/user/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                    <li><a href="/user/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    <li><a href="/user/register"><span class="glyphicon glyphicon-user"></span> SIGN UP</a></li>
+                    <li><a href="/user/login"><span class="glyphicon glyphicon-log-in"></span> LOGIN</a></li>
                     {{/unless}}
                 </ul>
             </div>
