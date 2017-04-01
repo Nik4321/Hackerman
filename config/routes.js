@@ -14,5 +14,5 @@ module.exports = (app) => {
     app.get('/user/logout', userController.logout);
 
     app.get('/discussion/create', discussionController.createGet);
-    app.get('/discussion/create', discussionController.createPost);
+    app.post('/discussion/create', discussionController.createPost);
 };

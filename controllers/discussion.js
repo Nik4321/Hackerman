@@ -9,7 +9,7 @@ module.exports = {
         let discussionArgs = req.body;
 
         let errorMsg = "";
-
+        console.log('here');
         if (!req.isAuthenticated()) {
             errorMsg = 'You should be logged in to make articles';
         } else if (!discussionArgs.title) {
