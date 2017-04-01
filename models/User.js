@@ -6,6 +6,7 @@ let userSchema = mongoose.Schema(
         email: {type: String, required: true, unique: true},
         passwordHash: {type: String, required: true},
         fullName: {type: String, required: true},
+        discussions: {type: [mongoose.Schema.Types.ObjectId], default: []},
         salt: {type: String, required: true}
     }
 );
@@ -22,6 +23,3 @@ userSchema.method ({
 const User = mongoose.model('User', userSchema);
 
 module.exports = User;
-
-
-
