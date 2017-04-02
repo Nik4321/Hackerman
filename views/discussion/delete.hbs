@@ -1,0 +1,31 @@
+<div class="container body-content span=8 offset=2">
+    <div class="well">
+        <form class="form-horizontal" method="POST" action="/discussion/delete/{{id}}">
+            <fieldset>
+                <legend>Delete Discussion</legend>
+
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="discussionTitle">Discussion Title</label>
+                    <div class="col-sm-4 ">
+                        <input type="text" class="form-control" id="discussionTitle" placeholder="Discussion Title" value="{{title}}" name="title" disabled >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="discussionContent">Content</label>
+                    <div class="col-sm-6">
+                        <textarea class="form-control" id="discussionContent" rows="5" name="content" disabled>{{content}}</textarea>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-4 col-sm-offset-4">
+
+                        <a href="/" class="btn btn-default">Cancel</a>
+
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>

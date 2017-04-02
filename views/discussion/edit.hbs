@@ -1,0 +1,36 @@
+
+<script src="http://js.nicedit.com/nicEdit-latest.js" type="text/javascript"></script>
+<script type="text/javascript">
+    bkLib.onDomLoaded(nicEditors.allTextAreas);
+</script>
+
+<div class="container body-content span=8 offset=2">
+    <div class="well">
+        <form class="form-horizontal" method="POST" action="/discussion/edit/{{id}}">
+            <fieldset>
+                <legend>Edit Discussion</legend>
+
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="discussionTitle">Article Title</label>
+                    <div class="col-sm-4 ">
+                        <input type="text" class="form-control" id="discussionTitle" placeholder="Discussion Title" value="{{title}}" name="title" required >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="discussionContent">Content</label>
+                    <div class="col-sm-6">
+                        <textarea class="form-control" id="discussionContent" rows="5" name="content">{{content}}</textarea>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-4 col-sm-offset-4">
+                        <a href="/" class="btn btn-default">Cancel</a>
+
+                        <button type="submit" href="/discussion/edit/{{id}}" class="btn btn-success">Edit</button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
