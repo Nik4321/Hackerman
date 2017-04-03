@@ -43,6 +43,7 @@ module.exports.seedAdmin = () => {
                     passwordHash: passwordHash,
                     fullName: 'Admin',
                     discussions: [],
+                    news: [],
                     salt: salt,
                     roles: roles
                 };
