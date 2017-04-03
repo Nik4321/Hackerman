@@ -1,11 +1,34 @@
 body {
     padding-top: 70px;
+    background-color: #2f3b49;
 }
 
-section main{
-    background-color: black;
-    padding: 10px;
-    margin: 20px auto;
-    border: 1px solid black;
+article{
+    background-color: #16191d;
+    padding: 40px;
+    margin: 10px auto;
+    border: 2px solid black;
+    border-bottom-style: dashed;
     border-radius: 1px;
 }
+.tactical_cont{
+    background: #22282f url(content-bg.png) repeat 0 0;
+    padding: 8px;
+    border: 1px solid #282f38;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    border-radius: 1px;
+}
+.sectionMain {
+    background-color: #16191d;
+    padding: 10px;
+    margin: 20px auto;
+    border: 1px solid #282f38;
+    border-radius: 1px;
+}
+h2, h3, p, em{
+    color: white;
+}
+
+
+
