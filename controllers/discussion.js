@@ -2,7 +2,7 @@ const Discussion = require('mongoose').model('Discussion');
 
 module.exports = {
     createGet: (req, res) => {
-    res.render('discussion/create');
+        res.render('discussion/create');
     },
 
     createPost: (req, res) => {

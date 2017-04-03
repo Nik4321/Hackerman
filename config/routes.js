@@ -1,6 +1,7 @@
 const userController = require('./../controllers/user');
 const homeController = require('./../controllers/home');
 const discussionController = require('./../controllers/discussion');
+const newsController = require('./../controllers/news');
 
 module.exports = (app) => {
     app.get('/', homeController.index);
@@ -24,5 +25,16 @@ module.exports = (app) => {
     app.get('/discussion/delete/:id', discussionController.deleteGet);
     app.post('/discussion/delete/:id', discussionController.deletePost);
 
+    app.get('/news/all', newsController.newsGet);
 
+    app.get('/news/details/:id', newsController.details);
+
+    app.get('/news/create', newsController.createGet);
+    app.post('/news/create', newsController.createPost);
+
+    //app.get('/news/edit/:id', newsController.editGet);
+    //app.post('/news/edit/:id', newsController.editPost);
+
+    //app.get('/news/delete/:id', newsController.deleteGet);
+    //app.post('/news/delete/:id', newsController.deletePost);
 };

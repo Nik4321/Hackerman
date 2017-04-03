@@ -15,4 +15,5 @@ module.exports = (config) => {
 
     require('./../models/User');
     require('./../models/Discussion');
+    require('./../models/News');
 };
