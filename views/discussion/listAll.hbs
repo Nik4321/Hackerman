@@ -1,7 +1,8 @@
 <div class="container body-content">
     <div class="row">
         {{#each discussions}}
-            <div class="col-md-6">
+            <div class="col-md-12">
+
                 <article>
                     <header>
                         <h2>{{this.title}}</h2>
@@ -19,6 +20,10 @@
                             <a class="btn btn-default btn-xs" href="/discussion/details/{{this.id}}">Read more &raquo;</a>
                         </div>
                     </footer>
+                    <br>
+                    <br>
+                    <hr>
+
                 </article>
             </div>
         {{/each}}
