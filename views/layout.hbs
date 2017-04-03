@@ -25,19 +25,19 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-left">
                     <li><a href="/">HOME</a></li>
-                    <li><a href="#">DISCUSSIONS</a></li>
-                    <li><a href="#">NEWS</a></li>
-                    <li><a href="#">CONTACTS</a></li>
+                    <li><a href="/discussion/listAll">DISCUSSIONS</a></li>
+                    <li><a href="/news/listAll"><i class="fa fa-newspaper-o" aria-hidden="true"></i> NEWS</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     {{#if user}}
-                    <li><a href="/user/details"><span class="glyphicon glyphicon-user"></span> {{user.fullName}}</a></li>
-                    <li><a href="/discussion/create"><span class="glyphicon glyphicon-log-in"></span> NEW DISCUSSION</a></li>
-                    <li><a href="/user/logout"><span class="glyphicon glyphicon-log-out"></span> LOGOUT</a></li>
+                    <li><a href="/user/details"><i class="fa fa-user-circle" aria-hidden="true"></i> {{user.fullName}}</a></li>
+                    <li><a href="/news/create"><i class="fa fa-plus-square" aria-hidden="true"></i> PUBLISH NEWS</a></li>
+                    <li><a href="/discussion/create"><i class="fa fa-plus-square" aria-hidden="true"></i> NEW DISCUSSION</a></li>
+                    <li><a href="/user/logout"><i class="fa fa-sign-out" aria-hidden="true"></i> LOGOUT</a></li>
                     {{/if}}
                     {{#unless user}}
-                    <li><a href="/user/register"><span class="glyphicon glyphicon-user"></span> SIGN UP</a></li>
-                    <li><a href="/user/login"><span class="glyphicon glyphicon-log-in"></span> LOGIN</a></li>
+                    <li><a href="/user/register"><i class="fa fa-user-plus" aria-hidden="true"></i> SIGN UP</a></li>
+                    <li><a href="/user/login"><i class="fa fa-sign-in" aria-hidden="true"></i> LOGIN</a></li>
                     {{/unless}}
                 </ul>
             </div>
