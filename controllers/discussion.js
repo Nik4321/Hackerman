@@ -1,6 +1,13 @@
 const Discussion = require('mongoose').model('Discussion');
 
 module.exports = {
+
+    discussionsGet: (req, res) => {
+        Discussion.find({}).limit(6).populate('author').then(discussions => {
+        res.render('discussion/listAll', {discussions: discussions});
+        });
+    },
+
     createGet: (req, res) => {
         res.render('discussion/create');
     },

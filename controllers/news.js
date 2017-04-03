@@ -4,7 +4,7 @@ module.exports = {
 
     newsGet: (req, res) => {
         News.find({}).limit(6).populate('author').then(news => {
-            res.render('news/all', {news: news});
+            res.render('news/listAll', {news: news});
         });
     },
 
@@ -56,4 +56,64 @@ module.exports = {
             });
         });
     },
+
+    editGet: (req, res) => {
+        let id = req.params.id;
+
+        News.findById(id).then(news => {
+            res.render('news/edit', news);
+        });
+    },
+
+    editPost: (req, res) => {
+        let id = req.params.id;
+
+        let newsArgs = req.body;
+
+        let errorMsg = '';
+        if (!newsArgs.title) {
+            errorMsg = 'News title cannot be empty!';
+        }
+
+        if (errorMsg) {
+            res.render('news/edit', {error: errorMsg});
+        } else {
+            News.update({_id: id}, {$set: {title: newsArgs.title, content: newsArgs.content}})
+            .then(updateStatus => {
+                res.redirect(`/news/details/${id}`);
+            });
+        }
+    },
+
+    deleteGet: (req, res) => {
+        let id = req.params.id;
+
+        News.findById(id).then(news => {
+            res.render('news/delete', news);
+        });
+    },
+
+    deletePost: (req, res) => {
+        let id = req.params.id;
+
+        News.findOneAndRemove({_id: id}).populate('author').then(news => {
+            let author = news.author;
+
+            // Index of the discussion's ID in the author's discussions.
+            let index = author.news.indexOf(news.id);
+
+            if (index < 0) {
+                let errorMsg = 'The News was not found for the author!';
+                res.render('news/delete', {error: errorMsg});
+            } else {
+            // Remove count elements afther given index (inclusive).
+            let count = 1;
+            author.news.splice(index, count);
+            author.save().then((user) => {
+                res.redirect('/');
+            });
+            }
+        });
+    }
+
 };
