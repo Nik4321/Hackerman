@@ -18,7 +18,6 @@ module.exports = (app) => {
 
     app.get('/user/details', userController.details);
 
-
     // Discussion routes:
     app.get('/discussion/listAll', discussionController.discussionsGet);
 

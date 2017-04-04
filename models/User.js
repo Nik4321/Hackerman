@@ -11,7 +11,8 @@ let userSchema = mongoose.Schema(
         salt: {type: String, required: true},
         isAdmin: {type: Boolean, default: false},
         joinDate: {type: Date, default: Date.now()}
-    }
+       //document.getElementById("demo").innerHTML = d.toUTCString();
+}
 );
 
 userSchema.method ({

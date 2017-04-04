@@ -9,8 +9,9 @@
                         <h2>{{this.title}}</h2>
 
                     <article>
+                        //Fixing this.date
                         <small class="author">
-                            {{this.author.fullName}} : day : hours
+                            {{this.author.fullName}} : {{this.date}}
                         </small>
                         <br>
                         <br>
@@ -25,6 +26,7 @@
                     </div>
                 </div>
             </div>
+
         {{/each}}
     </div>
 </div>
