@@ -16,7 +16,6 @@ module.exports = (app) => {
 
     app.get('/user/logout', userController.logout);
 
-
     // Discussion routes:
     app.get('/discussion/listAll', discussionController.discussionsGet);
 
@@ -30,8 +29,6 @@ module.exports = (app) => {
 
     app.get('/discussion/delete/:id', discussionController.deleteGet);
     app.post('/discussion/delete/:id', discussionController.deletePost);
-
-
 
     // News routes:
     app.get('/news/listAll', newsController.newsGet);

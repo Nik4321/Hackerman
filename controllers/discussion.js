@@ -104,11 +104,11 @@ module.exports = {
                 res.render('discussion/delete', {error: errorMsg});
             } else {
             // Remove count elements afther given index (inclusive).
-            let count = 1;
-            author.discussions.splice(index, count);
-            author.save().then((user) => {
-                res.redirect('/');
-            });
+                let count = 1;
+                author.discussions.splice(index, count);
+                author.save().then((user) => {
+                    res.redirect('/');
+                });
             }
         });
     },
