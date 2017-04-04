@@ -78,6 +78,10 @@ module.exports = {
     },
 
     details: (req, res) => {
-        res.render('user/details');
+        let id = req.params.id;
+
+        User.findById(id).populate().then(user =>{
+            res.render('user/details', user)
+        });
     }
 };

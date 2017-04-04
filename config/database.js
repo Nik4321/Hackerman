@@ -14,6 +14,7 @@ module.exports = (config) => {
     });
 
     require('./../models/User').seedAdmin();
+    require('./../models/Admin');
     require('./../models/Discussion');
     require('./../models/News');
 };
