@@ -31,26 +31,29 @@ module.exports.seedAdmin = () => {
    let email = 'ShadyAdmin@gmail.com';
    User.findOne({email: email}).then(admin => {
       if(!admin) {
-         let salt = encryption.generateSalt();
-         let passwordHash = encryption.hashPassword('admin', salt);
+            let salt = encryption.generateSalt();
+            let passwordHash = encryption.hashPassword('admin', salt);
 
-         let user = {
-            email: email,
-            passwordHash: passwordHash,
-            fullName: 'ShadyGuyzAdmin',
-            discussions: [],
-            news: [],
-            salt: salt,
-            isAdmin: true,
-            joinDate: Date.now()
-         };
-
-         User.create(user).then(err => {
-            if(err) {
-               console.log(err.message);
-            } else {
-               console.log('Admin seeded!');
-            }
+            let user = {
+               email: email,
+               passwordHash: passwordHash,
+               fullName: 'ShadyGuyzAdmin',
+               discussions: [],
+               news: [],
+               salt: salt,
+               isAdmin: true,
+               joinDate: Date.now()
+            };
+            // Needs fixing for admins
+            User.create(user).then(user => {
+               admin.email.push(user.email);
+               admin.save(err => {
+                  if(err) {
+                     console.log(err.message);
+                  } else {
+                     console.log('Admin seeded!');
+                  }
+            });
          });
       }
    });
