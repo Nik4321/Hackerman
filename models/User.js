@@ -10,7 +10,7 @@ let userSchema = mongoose.Schema(
         news: {type: [mongoose.Schema.Types.ObjectId], default: []},
         salt: {type: String, required: true},
         isAdmin: {type: Boolean, default: false},
-        dateCreated: {type: Date, default: Date.now()}
+        joinDate: {type: Date, default: Date.now()}
     }
 );
 
@@ -28,7 +28,6 @@ const User = mongoose.model('User', userSchema);
 module.exports = User;
 
 module.exports.seedAdmin = () => {
-<<<<<<< HEAD
    let email = 'ShadyAdmin@gmail.com';
    User.findOne({email: email}).then(admin => {
       if(!admin) {
@@ -42,7 +41,8 @@ module.exports.seedAdmin = () => {
             discussions: [],
             news: [],
             salt: salt,
-            isAdmin: true
+            isAdmin: true,
+            joinDate: Date.now()
          };
 
          User.create(user).then(err => {
@@ -54,6 +54,4 @@ module.exports.seedAdmin = () => {
          });
       }
    });
-=======
->>>>>>> origin/master
 };
