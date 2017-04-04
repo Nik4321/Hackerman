@@ -28,11 +28,4 @@ const User = mongoose.model('User', userSchema);
 module.exports = User;
 
 module.exports.seedAdmin = () => {
-    let email = 'g@g.bg';
-    User.findOne({email: email}).then(admin => {
-        if(!admin){
-            Role.findOne({name: 'Admin'}).then(role => {
-                let salt = encryption.generateSalt();
-                let passwordHash = encryption.hashPassword('admin', salt);
-
 };
