@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const Role = require('mongoose').model('Role');
 const encryption = require('./../utilities/encryption');
 
 let userSchema = mongoose.Schema(
@@ -9,8 +8,9 @@ let userSchema = mongoose.Schema(
         fullName: {type: String, required: true},
         discussions: {type: [mongoose.Schema.Types.ObjectId], default: []},
         news: {type: [mongoose.Schema.Types.ObjectId], default: []},
-        roles: [{type: mongoose.Schema.Types.ObjectId, ref: 'Role'}],
-        salt: {type: String, required: true}
+        salt: {type: String, required: true},
+        isAdmin: {type: Boolean, default: false},
+        joinDate: {type: Date, default: Date.now()}
     }
 );
 
@@ -28,4 +28,30 @@ const User = mongoose.model('User', userSchema);
 module.exports = User;
 
 module.exports.seedAdmin = () => {
+   let email = 'ShadyAdmin@gmail.com';
+   User.findOne({email: email}).then(admin => {
+      if(!admin) {
+         let salt = encryption.generateSalt();
+         let passwordHash = encryption.hashPassword('admin', salt);
+
+         let user = {
+            email: email,
+            passwordHash: passwordHash,
+            fullName: 'ShadyGuyzAdmin',
+            discussions: [],
+            news: [],
+            salt: salt,
+            isAdmin: true,
+            joinDate: Date.now()
+         };
+
+         User.create(user).then(err => {
+            if(err) {
+               console.log(err.message);
+            } else {
+               console.log('Admin seeded!');
+            }
+         });
+      }
+   });
 };
