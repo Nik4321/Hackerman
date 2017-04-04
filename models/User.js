@@ -28,6 +28,7 @@ const User = mongoose.model('User', userSchema);
 module.exports = User;
 
 module.exports.seedAdmin = () => {
+<<<<<<< HEAD
    let email = 'ShadyAdmin@gmail.com';
    User.findOne({email: email}).then(admin => {
       if(!admin) {
@@ -53,4 +54,6 @@ module.exports.seedAdmin = () => {
          });
       }
    });
+=======
+>>>>>>> origin/master
 };

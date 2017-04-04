@@ -75,5 +75,9 @@ module.exports = {
     logout: (req, res) => {
         req.logOut();
         res.redirect('/');
+    },
+
+    details: (req, res) => {
+        res.render('user/details');
     }
 };
