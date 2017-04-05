@@ -18,6 +18,8 @@
                                 </div>
                                 <br>
                             </div>
+                            <div class="btn-group btn-group-justified">
+                            </div>
                             <div class="col-sm-6">
                                 <h4 style="color:#00b1b1;"> {{user.fullName}}</h4></span>
                                 <span>#</span>
@@ -55,6 +57,16 @@
 
                             <div class="clearfix"></div>
                             <div class="bot-border"></div>
+
+                            {{#if user.isAdmin}}
+                            <form class="form-horizontal" method="POST" action="/user/details/:id">
+                                <br />
+                                <button type="submit" class="btn btn-success btn-block">Add Admin</button>
+                            </form>
+                            {{/if}}
+
+                            <div class="clearfix"></div>
+                            <div class="bot-border"></div>
                         </div>
                     </div>
                 </div>
@@ -69,7 +81,3 @@
         </script>
     </div>
 </div>
-
-
-
-

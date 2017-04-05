@@ -46,16 +46,13 @@ module.exports.seedAdmin = () => {
                joinDate: Date.now()
             };
             // Needs fixing for admins
-            User.create(user).then(user => {
-               admin.email.push(user.email);
-               admin.save(err => {
+            User.create(user).then(err => {
                   if(err) {
                      console.log(err.message);
                   } else {
                      console.log('Admin seeded!');
                   }
             });
-         });
-      }
-   });
+         }
+      });
 };

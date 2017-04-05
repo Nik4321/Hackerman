@@ -17,6 +17,7 @@ module.exports = (app) => {
     app.get('/user/logout', userController.logout);
 
     app.get('/user/details/:id', userController.details);
+    app.post('/user/details/:id', userController.adminPost);
 
     // Discussion routes:
     app.get('/discussion/listAll', discussionController.discussionsGet);

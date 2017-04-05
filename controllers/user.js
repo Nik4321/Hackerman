@@ -83,5 +83,26 @@ module.exports = {
         User.findById(id).populate().then(user =>{
             res.render('user/details', user)
         });
+    },
+
+    adminPost: (req, res) => {
+        let adminArgs = req.body;
+        console.log(adminArgs.email);
+        User.findOne({email: adminArgs.email}).then(user =>{
+
+            let errorMsg = '';
+            if(!user) {
+                errorMsg = "User does not exist!";
+            }
+
+            if (errorMsg) {
+                adminArgs.error = errorMsg;
+                res.render('/', adminArgs);
+            } else {
+                User.update({email: adminArgs.email}, {$set: {isAdmin: true}}).then(updateStatus => {
+                    res.redirect('/');
+                });
+            }
+        });
     }
 };
