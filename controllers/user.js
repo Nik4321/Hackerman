@@ -86,6 +86,8 @@ module.exports = {
     },
 
     adminPost: (req, res) => {
+        let id = req.params.id;
+
         let adminArgs = req.body;
         User.findOne({email: adminArgs.email}).then(user =>{
 
@@ -96,10 +98,10 @@ module.exports = {
 
             if (errorMsg) {
                 adminArgs.error = errorMsg;
-                res.render('/', adminArgs);
+                res.render(`/user/details/${id}`, {error: errorMsg});
             } else {
                 User.update({email: adminArgs.email}, {$set: {isAdmin: true}}).then(updateStatus => {
-                    res.redirect('/');
+                    res.redirect(`/user/details/${id}`);
                 });
             }
         });
