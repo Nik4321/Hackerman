@@ -18,14 +18,16 @@
                                 </div>
                                 <br>
                             </div>
+
+                            <div class="col-sm-6">
+                                <h4 style="color:#00b1b1;"> {{user.fullName}}</h4></span>
+                                <span>#</span>
+                            </div>
+
                             <div class="btn-group btn-group-justified">
                                 <a href="#" class="btn btn-success">User Settings</a>
                                 <a href="#" class="btn btn-success">Things</a>
                                 <a href="#" class="btn btn-success">More Things</a>
-                            </div>
-                            <div class="col-sm-6">
-                                <h4 style="color:#00b1b1;"> {{user.fullName}}</h4></span>
-                                <span>#</span>
                             </div>
                             <div class="clearfix"></div>
                             <hr style="margin:5px 0 5px 0;">
@@ -58,13 +60,15 @@
 
                             <div class="col-sm-5 col-xs-6 tital " >Nationality:</div><div class="col-sm-7"> #</div>
 
-                            <div class="clearfix"></div>
-                            <div class="bot-border"></div>
-
                             {{#if user.isAdmin}}
                             <form class="form-horizontal" method="POST" action="/user/details/:id">
+
+                                <div class="clearfix"></div>
+                                <div class="bot-border"></div>
+                                <br>
+
                                 <input type="text" class="form-control" id="email" placeholder="Add Admin" required name="email">
-                                <br />
+                                <div class="bot-border"></div>
                                 <button type="submit" class="btn btn-success btn-block">Add Admin</button>
                             </form>
                             {{/if}}
