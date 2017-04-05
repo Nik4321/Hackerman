@@ -87,7 +87,6 @@ module.exports = {
 
     adminPost: (req, res) => {
         let adminArgs = req.body;
-        console.log(adminArgs.email);
         User.findOne({email: adminArgs.email}).then(user =>{
 
             let errorMsg = '';

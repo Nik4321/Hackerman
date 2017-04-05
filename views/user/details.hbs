@@ -19,6 +19,9 @@
                                 <br>
                             </div>
                             <div class="btn-group btn-group-justified">
+                                <a href="#" class="btn btn-success">User Settings</a>
+                                <a href="#" class="btn btn-success">Things</a>
+                                <a href="#" class="btn btn-success">More Things</a>
                             </div>
                             <div class="col-sm-6">
                                 <h4 style="color:#00b1b1;"> {{user.fullName}}</h4></span>
@@ -60,6 +63,7 @@
 
                             {{#if user.isAdmin}}
                             <form class="form-horizontal" method="POST" action="/user/details/:id">
+                                <input type="text" class="form-control" id="email" placeholder="Add Admin" required name="email">
                                 <br />
                                 <button type="submit" class="btn btn-success btn-block">Add Admin</button>
                             </form>
