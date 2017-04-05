@@ -5,7 +5,7 @@
                 <div class="panel-heading">
                     <h4 >User Profile</h4>
 
-                    <a href="edit.hbs">Edit</a>
+                    <a href="#">Edit</a>
                 </div>
                 <div class="panel-body">
                     <div class="box box-info">
@@ -20,8 +20,19 @@
                             </div>
 
                             <div class="col-sm-6">
-                                <h4 style="color:#00b1b1;"> {{user.fullName}}</h4></span>
-                                <span>#</span>
+                                <h3 style="color:#00b1b1;"> {{user.fullName}}</h3>
+                                <span>
+                                    {{#if user.isAdmin}}
+                                        <div>
+                                            <h4 style="color:#4669b1;"> Admin</h4>
+                                        </div>
+                                    {{/if}}
+                                    {{#unless user.isAdmin}}
+                                        <div>
+                                            <h4 style="color:#4669b1;"> User</h4>
+                                        </div>
+                                    {{/unless}}
+                                </span>
                             </div>
 
                             <div class="btn-group btn-group-justified">
