@@ -1,4 +1,5 @@
 const Discussion = require('mongoose').model('Discussion');
+const Replying = require('mongoose').model('Replying');
 
 module.exports = {
 
