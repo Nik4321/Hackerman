@@ -59,7 +59,20 @@ module.exports = {
     editGet: (req, res) => {
         let id = req.params.id;
 
+        if(!req.isAuthenticated()) {
+            let returnUrl = `/discussion/edit/${id}`;
+            req.session.returnUrl = returnUrl;
+
+            res.redirect('/user/login');
+            return;
+        }
+
         Discussion.findById(id).then(discussion => {
+            if (!req.user.userIsAdmin || !req.user.isAuthorDiscussion(discussion)) {
+                res.redirect('/user/login');
+                return;
+            }
+
             res.render('discussion/edit', discussion);
         });
     },

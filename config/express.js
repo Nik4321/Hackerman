@@ -32,6 +32,11 @@ module.exports = (app, config) => {
         next();
     });
 
+    //An error handling middleware
+    app.use(function(err, req, res, next) {
+        res.status(422).send({error: err.messege})
+    });
+
     // This makes the content in the "public" folder accessible for every user.
     app.use(express.static(path.join(config.rootFolder, 'public')));
 };
