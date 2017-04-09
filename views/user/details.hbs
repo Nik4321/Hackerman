@@ -4,8 +4,6 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 >User Profile</h4>
-
-                    <a href="/user/EditProfile/{{user.id}}">Edit</a>
                 </div>
                 <div class="panel-body">
                     <div class="box box-info">
@@ -36,18 +34,20 @@
                             </div>
 
                             <div class="btn-group btn-group-justified">
-                                <a href="#" class="btn btn-success">User Settings</a>
-                                <a href="#" class="btn btn-success">Things</a>
-                                <a href="#" class="btn btn-success">More Things</a>
+                                <a href="/user/EditProfile/{{user.id}}" class="btn btn-success">User Settings</a>
+                                <a href="#" class="btn btn-success">User's Discussions</a>
+                                <a href="#" class="btn btn-success">User's News</a>
+                                {{#if user.isAdmin}}
+                                <a href="#" class="btn btn-success">Add Admin</a>
+                                {{/if}}
+                                {{#unless user.isAdmin}}
+                                <a href="" class="btn btn-success" disabled>Add Admin</a>
+                                {{/unless}}
                             </div>
                             <div class="clearfix"></div>
                             <hr style="margin:5px 0 5px 0;">
 
-                            <div class="col-sm-5 col-xs-6 tital " >First Name:</div><div class="col-sm-7 col-xs-6 "> {{editProfile.firstName}}</div>
-                            <div class="clearfix"></div>
-                            <div class="bot-border"></div>
-
-                            <div class="col-sm-5 col-xs-6 tital " >Last Name:</div><div class="col-sm-7"> {{editProfile.lastName}}</div>
+                            <div class="col-sm-5 col-xs-6 tital " >Full Name:</div><div class="col-sm-7 col-xs-6 "> {{user.fullName}}</div>
                             <div class="clearfix"></div>
                             <div class="bot-border"></div>
 
@@ -75,7 +75,7 @@
                                 <div class="clearfix"></div>
                                 <div class="bot-border"></div>
                                 <br>
-
+                                <p style="color:red;">{{error}}</p>
                                 <input type="text" class="form-control" id="email" placeholder="Add Admin" required name="email">
                                 <div class="bot-border"></div>
                                 <button type="submit" class="btn btn-success btn-block">Add Admin</button>

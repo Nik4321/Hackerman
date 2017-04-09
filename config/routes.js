@@ -19,7 +19,8 @@ module.exports = (app) => {
     app.get('/user/details/:id', userController.details);
     app.post('/user/details/:id', userController.adminPost);
 
-    app.get('/user/EditProfile/:id', userController.editProfileGet);
+    app.get('/user/editProfile/:id', userController.editProfileGet);
+    app.post('/user/editProfile/:id', userController.editProfilePost);
 
     // Discussion routes:
     app.get('/discussion/listAll', discussionController.discussionsGet);

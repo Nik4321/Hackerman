@@ -103,9 +103,10 @@ module.exports = {
 
             if (errorMsg) {
                 adminArgs.error = errorMsg;
-                res.render(`/user/details/${id}`, {error: errorMsg});
+                res.render(`/user/details/${id}`, adminArgs);
             } else {
-                User.update({email: adminArgs.email}, {$set: {isAdmin: true}}).then(updateStatus => {
+                User.update({email: adminArgs.email}, {$set: {isAdmin: true}})
+                .then(updateStatus => {
                     res.redirect(`/user/details/${id}`);
                 });
             }
@@ -125,15 +126,25 @@ module.exports = {
 
         let editProfileArgs = req.body;
 
-        EditProfile.update({_id: id}, {$set: {
-            firstName: editProfileArgs.firstName,
-            lastName: editProfileArgs.lastName,
-            birthday: editProfileArgs.birthday,
-            currentAddress: editProfileArgs.currentAddress,
-            birthPlace: editProfileArgs.birthPlace,
-            nationality: editProfileArgs.nationality
-        }}).then(updateStatus => {
+        let errorMsg = '';
+        if (!editProfileArgs.fullName) {
+            errorMsg = 'Invalid Full Name';
+        } else if (!editProfileArgs.email) {
+            errorMsg = 'Invalid Email';
+        } // else if (editProfileArgs.email === req.params.email) {
+        //    errorMsg = 'Cannot change email to same';
+        //} else if (editProfileArgs.fullname === req.params.fullName) {
+        //    errorMsg = 'Cannot change full name to same';
+        //}
+
+        if (errorMsg) {
+            editProfileArgs.error = errorMsg;
+            res.render('/user/editProfile/:id', editProfileArgs);
+        } else {
+            User.update({_id: id}, {$set: {fullName: editProfileArgs.fullName, email: editProfileArgs.email}})
+            .then(updateStatus => {
                 res.redirect(`/user/details/${id}`);
             });
+        }
     }
 };
