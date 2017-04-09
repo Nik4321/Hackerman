@@ -69,7 +69,7 @@ module.exports = {
 
         Discussion.findById(id).then(discussion => {
             if (!req.user.userIsAdmin || !req.user.isAuthorDiscussion(discussion)) {
-                res.redirect('/user/login');
+                res.redirect('/');
                 return;
             }
 
