@@ -2,6 +2,7 @@ const userController = require('./../controllers/user');
 const homeController = require('./../controllers/home');
 const discussionController = require('./../controllers/discussion');
 const newsController = require('./../controllers/news');
+const editProfileController = require('./../controllers/editProfile');
 
 module.exports = (app) => {
 
@@ -15,6 +16,10 @@ module.exports = (app) => {
     app.post('/user/login', userController.loginPost);
 
     app.get('/user/logout', userController.logout);
+
+    // Profile Page routes:
+    app.get('/user/editProfile', editProfileController.editProfileGet);
+    app.post('/user/editProfile', editProfileController.editProfilePost);
 
     app.get('/user/details/:id', userController.details);
     app.post('/user/details/:id', userController.adminPost);

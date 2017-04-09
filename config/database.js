@@ -17,4 +17,5 @@ module.exports = (config) => {
     require('./../models/Admin');
     require('./../models/Discussion');
     require('./../models/News');
+    require('./../models/EditProfile')
 };
