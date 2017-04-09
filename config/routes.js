@@ -17,6 +17,8 @@ module.exports = (app) => {
 
     app.get('/user/logout', userController.logout);
 
+    app.get('/user/details/:username', userController.details);
+    app.post('/user/details/:username', userController.adminPost);
     // Profile Page routes:
     app.get('/user/editProfile', editProfileController.editProfileGet);
     app.post('/user/editProfile', editProfileController.editProfilePost);
@@ -24,6 +26,7 @@ module.exports = (app) => {
     app.get('/user/details/:id', userController.details);
     app.post('/user/details/:id', userController.adminPost);
 
+    //app.get('/user/details/:username/settings')
     // Discussion routes:
     app.get('/discussion/listAll', discussionController.discussionsGet);
 

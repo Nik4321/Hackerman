@@ -15,12 +15,12 @@
                     {{content}}
                 </p>
 
-
-
                 <footer>
                     <div class="pull-right">
-                        <a class="btn btn-success btn-xs" href="/discussion/edit/{{id}}">Edit &raquo;</a>
-                        <a class="btn btn-danger btn-xs" href="/discussion/delete/{{id}}">Delete &raquo;</a>
+                        {{#if isUserAuthorized}}
+                            <a class="btn btn-success btn-xs" href="/discussion/edit/{{id}}">Edit &raquo;</a>
+                            <a class="btn btn-danger btn-xs" href="/discussion/delete/{{id}}">Delete &raquo;</a>
+                        {{/if}}
                         <a class="btn btn-default btn-xs" href="/">Back &raquo;</a>
                     </div>
                 </footer>

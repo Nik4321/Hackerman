@@ -67,7 +67,12 @@ module.exports = {
                     return;
                 }
 
-                res.redirect('/');
+                let returnUrl = '/';
+                if (req.session.returnUrl) {
+                    returnUrl = req.session.returnUrl;
+                    delete req.session.returnUrl;
+                }
+                res.redirect(returnUrl);
             })
         })
     },
@@ -80,7 +85,7 @@ module.exports = {
     details: (req, res) => {
         let id = req.params.id;
 
-        User.findById(id).populate().then(user =>{
+        User.findById(id).populate().then(user => {
             res.render('user/details', user)
         });
     },

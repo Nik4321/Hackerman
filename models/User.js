@@ -12,15 +12,39 @@ let userSchema = mongoose.Schema(
         isAdmin: {type: Boolean, default: false},
         joinDate: {type: Date, default: Date.now()}
        //document.getElementById("demo").innerHTML = d.toUTCString();
-}
+    }
 );
 
 userSchema.method ({
    authenticate: function (password) {
-       let inputPasswordHash = encryption.hashPassword(password, this.salt);
-       let isSamePasswordHash = inputPasswordHash === this.passwordHash;
+      let inputPasswordHash = encryption.hashPassword(password, this.salt);
+      let isSamePasswordHash = inputPasswordHash === this.passwordHash;
 
-       return isSamePasswordHash;
+      return isSamePasswordHash;
+   },
+
+   isAuthorDiscussion: function (discussion) {
+      if(!discussion) {
+         return false;
+      }
+
+      let isAuthorDiscussion = discussion.author.equals(this.id);
+
+      return isAuthorDiscussion;
+   },
+
+   isAuthorNews: function (news) {
+      if(!news) {
+         return false;
+      }
+
+      let isAuthorNews = news.author.equals(this.id);
+
+      return isAuthornews;
+   },
+
+   userIsAdmin: function (isAdmin) {
+         return this.isAdmin;
    }
 });
 
