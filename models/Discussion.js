@@ -5,7 +5,7 @@ let discussionSchema = mongoose.Schema({
     content: {type: String},
     author: {type: mongoose.Schema.Types.ObjectId, required: true, ref: 'User'},
     date: {type: Date, default: Date.now()},
-    reply: [{ type: Schema.Types.ObjectId, ref: 'Replying' }]
+    reply: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Replying' }]
 });
 
 let discussionReplyingSchema = mongoose.Schema({

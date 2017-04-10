@@ -90,6 +90,14 @@ module.exports = {
         });
     },
 
+    adminGet: (req, res) => {
+        let id = req.params.id;
+
+        User.findById(id).populate().then(user => {
+            res.render('user/adminAdd', user)
+        })
+    },
+
     adminPost: (req, res) => {
         let id = req.params.id;
 
@@ -103,7 +111,7 @@ module.exports = {
 
             if (errorMsg) {
                 adminArgs.error = errorMsg;
-                res.render(`/user/details/${id}`, adminArgs);
+                res.render(`/user/adminAdd/${id}`, adminArgs);
             } else {
                 User.update({email: adminArgs.email}, {$set: {isAdmin: true}})
                 .then(updateStatus => {

@@ -17,7 +17,10 @@ module.exports = (app) => {
     app.get('/user/logout', userController.logout);
 
     app.get('/user/details/:id', userController.details);
-    app.post('/user/details/:id', userController.adminPost);
+
+    app.get('/user/adminAdd/', userController.adminGet);
+    //need fixing "CANNOT POST /user/adminAdd/"
+    app.post('/user/adminAdd/:id', userController.adminPost);
 
     app.get('/user/editProfile/:id', userController.editProfileGet);
     app.post('/user/editProfile/:id', userController.editProfilePost);
