@@ -105,10 +105,10 @@ module.exports = {
         User.findOne({email: adminArgs.email}).then(user =>{
 
             let errorMsg = '';
-            if(!user) {
+            if (!user) {
                 errorMsg = "User does not exist!";
-            } else {
-                // Check if user is Admin
+            } else if (user.isAdmin) {
+                errorMsg = "User is already Admin!"
             }
 
             if (errorMsg) {
@@ -117,8 +117,7 @@ module.exports = {
             } else {
                 User.update({email: adminArgs.email}, {$set: {isAdmin: true}})
                 .then(updateStatus => {
-                    // if can fixing in future to user/details
-                    res.redirect('/');
+                    res.redirect(req.originalUrl);
                 });
             }
         });
@@ -152,14 +151,8 @@ module.exports = {
             editProfileArgs.error = errorMsg;
             res.render('/user/editProfile/:id', editProfileArgs);
         } else {
-            User.update({_id: id}, {$set: {
-                fullName: editProfileArgs.fullName,
-                email: editProfileArgs.email,
-                birthDate: editProfileArgs.birthDate,
-                birthPlace: editProfileArgs.birthPlace,
-                currentAddress: editProfileArgs.currentAddress,
-                nationality: editProfileArgs.nationality
-            }}).then(updateStatus => {
+            User.update({_id: id}, {$set: {fullName: editProfileArgs.fullName, email: editProfileArgs.email}})
+            .then(updateStatus => {
                 res.redirect(`/user/details/${id}`);
             });
         }
