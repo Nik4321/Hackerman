@@ -151,8 +151,14 @@ module.exports = {
             editProfileArgs.error = errorMsg;
             res.render('/user/editProfile/:id', editProfileArgs);
         } else {
-            User.update({_id: id}, {$set: {fullName: editProfileArgs.fullName, email: editProfileArgs.email}})
-            .then(updateStatus => {
+            User.update({_id: id}, {$set: {
+                fullName: editProfileArgs.fullName,
+                email: editProfileArgs.email,
+                birthDate: editProfileArgs.birthDate,
+                birthPlace: editProfileArgs.birthPlace,
+                currentAddress: editProfileArgs.currentAddress,
+                nationality: editProfileArgs.nationality
+            }}).then(updateStatus => {
                 res.redirect(`/user/details/${id}`);
             });
         }
