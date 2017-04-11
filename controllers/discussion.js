@@ -127,7 +127,6 @@ module.exports = {
             }
         });
     },
-
     replyGet: (req, res) => {
       res.render('discussion/details/:id');
     },
