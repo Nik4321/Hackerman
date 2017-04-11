@@ -1,9 +1,4 @@
 
-<script src="http://js.nicedit.com/nicEdit-latest.js" type="text/javascript"></script>
-<script type="text/javascript">
-    bkLib.onDomLoaded(nicEditors.allTextAreas);
-</script>
-
 <div class="container body-content span=8 offset=2">
     <div class="well">
         <form class="form-horizontal" method="POST" action="/user/adminAdd">
@@ -16,10 +11,14 @@
                     <br>
 
                     <p style="color:red;">{{error}}</p>
-                    <input type="text" class="form-control" id="email" placeholder="Add Admin" required name="email">
-                    <div class="bot-border"></div>
-                    <button type="submit" class="btn btn-success btn-block">Add Admin</button>
+                    <div class="input-group col-md-8" style="margin-left: 16%">
+                        <input type="text" class="form-control" id="email" placeholder="Add Admin" required name="email">
+                        <span class="input-group-btn">
+                            <button type="submit" class="btn btn-success btn-block">Add Admin</button>
+                        </span>
+                    </div>
 
+                    <div class="bot-border"></div>
                     <div class="clearfix"></div>
                 </div>
             </fieldset>
