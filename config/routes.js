@@ -39,6 +39,9 @@ module.exports = (app) => {
     app.get('/discussion/delete/:id', discussionController.deleteGet);
     app.post('/discussion/delete/:id', discussionController.deletePost);
 
+    app.get('/discussion/details/:id', discussionController.replyGet);
+    app.post('/discussion/details/:id', discussionController.replyPost);
+
     // News routes:
     app.get('/news/listAll', newsController.newsGet);
 
