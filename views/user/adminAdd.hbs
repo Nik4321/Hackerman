@@ -6,23 +6,19 @@
 
 <div class="container body-content span=8 offset=2">
     <div class="well">
-        <form class="form-horizontal" method="POST" action="/user/adminAdd/">
+        <form class="form-horizontal" method="POST" action="/user/adminAdd">
             <fieldset>
                 <legend>Add Admin</legend>
 
                 <div class="form-group">
-                    {{#if user.isAdmin}}
-                        <form class="form-horizontal" method="POST" action="/user/details/{{id}}">
 
-                            <div class="clearfix"></div>
-                            <div class="bot-border"></div>
-                            <br>
-                            <p style="color:red;">{{error}}</p>
-                            <input type="text" class="form-control" id="email" placeholder="Add Admin" required name="email">
-                            <div class="bot-border"></div>
-                            <button type="submit" class="btn btn-success btn-block">Add Admin</button>
-                        </form>
-                    {{/if}}
+                    <div class="clearfix"></div>
+                    <div class="bot-border"></div>
+                    <br>
+                    <p style="color:red;">{{error}}</p>
+                    <input type="text" class="form-control" id="email" placeholder="Add Admin" required name="email">
+                    <div class="bot-border"></div>
+                    <button type="submit" class="btn btn-success btn-block">Add Admin</button>
 
                     <div class="clearfix"></div>
                     <div class="bot-border"></div>

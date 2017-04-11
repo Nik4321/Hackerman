@@ -38,7 +38,7 @@
                                 <a href="#" class="btn btn-success">User's Discussions</a>
                                 <a href="#" class="btn btn-success">User's News</a>
                                 {{#if user.isAdmin}}
-                                <a href="/user/adminAdd/" class="btn btn-success">Add Admin</a>
+                                <a href="/user/adminAdd" class="btn btn-success">Add Admin</a>
                                 {{/if}}
                                 {{#unless user.isAdmin}}
                                 <a href="" class="btn btn-success" disabled>Add Admin</a>
@@ -68,19 +68,6 @@
                             <div class="bot-border"></div>
 
                             <div class="col-sm-5 col-xs-6 tital " >Nationality:</div><div class="col-sm-7"> {{editProfile.nationality}}</div>
-
-                            {{#if user.isAdmin}}
-                            <form class="form-horizontal" method="POST" action="/user/details/{{id}}">
-
-                                <div class="clearfix"></div>
-                                <div class="bot-border"></div>
-                                <br>
-                                <p style="color:red;">{{error}}</p>
-                                <input type="text" class="form-control" id="email" placeholder="Add Admin" required name="email">
-                                <div class="bot-border"></div>
-                                <button type="submit" class="btn btn-success btn-block">Add Admin</button>
-                            </form>
-                            {{/if}}
 
                             <div class="clearfix"></div>
                             <div class="bot-border"></div>

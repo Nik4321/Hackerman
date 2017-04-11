@@ -107,15 +107,18 @@ module.exports = {
             let errorMsg = '';
             if(!user) {
                 errorMsg = "User does not exist!";
+            } else {
+                //Check if user is Admin
             }
 
             if (errorMsg) {
                 adminArgs.error = errorMsg;
-                res.render(`/user/adminAdd/${id}`, adminArgs);
+                res.render('user/adminAdd', adminArgs);
             } else {
                 User.update({email: adminArgs.email}, {$set: {isAdmin: true}})
                 .then(updateStatus => {
-                    res.redirect(`/user/details/${id}`);
+                    // if can fixing in future to user/details
+                    res.redirect('/');
                 });
             }
         });
