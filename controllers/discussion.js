@@ -118,7 +118,7 @@ module.exports = {
                 let errorMsg = 'Discussion was not found for the author!';
                 res.render('discussion/delete', {error: errorMsg});
             } else {
-            // Remove count elements afther given index (inclusive).
+            // Remove count elements after given index (inclusive).
                 let count = 1;
                 author.discussions.splice(index, count);
                 author.save().then((user) => {
