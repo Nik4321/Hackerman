@@ -11,7 +11,7 @@ let userSchema = mongoose.Schema(
         salt: {type: String, required: true},
         isAdmin: {type: Boolean, default: false},
         joinDate: {type: Date, default: Date.now()},
-        birthDate: {type: Date},
+        birthDate: {type: Date.parse('DD/MM/YYYY') },
         birthPlace: {type: String},
         currentAddress: {type: String},
         nationality: {type: String}
