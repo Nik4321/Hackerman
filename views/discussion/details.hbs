@@ -25,17 +25,19 @@
                     </div>
                 </footer>
             </article>
-
+        <form class="form-horizontal" method="POST" action="/discussion/details/{{id}}">
             <fieldset>
                 <div class="form-group">
                     <h2>Reply</h2>
                     <h3>Content</h3>
-                    <textarea style="background-color: #16191d" id="reply" name="content" rows="8" cols="120"></textarea>
+                    <textarea style="background-color: #16191d" id="replyContent" name="reply" rows="8" cols="120"></textarea>
                 </div>
                 <div class="form-group">
-                        <button type="submit" class="btn btn-success" href="/">Reply</button>
+                        <p style="color:red;">{{error}}</p>
+                        <button type="submit" class="btn btn-success">Reply</button>
                 </div>
             </fieldset>
+        </form>
         </div>
     </div>
 </div>
