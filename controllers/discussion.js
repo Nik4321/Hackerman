@@ -126,5 +126,14 @@ module.exports = {
                 });
             }
         });
+    },
+
+    replyGet: (req, res) => {
+      res.render('discussion/details/:id');
+    },
+
+    replyPost: (req, res) => {
+        console.log(req.body);
     }
+
 };
