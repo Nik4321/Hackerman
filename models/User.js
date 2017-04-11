@@ -10,7 +10,11 @@ let userSchema = mongoose.Schema(
         news: {type: [mongoose.Schema.Types.ObjectId], default: []},
         salt: {type: String, required: true},
         isAdmin: {type: Boolean, default: false},
-        joinDate: {type: Date, default: Date.now()}
+        joinDate: {type: Date, default: Date.now()},
+        birthDate: {type: Date},
+        birthPlace: {type: String},
+        currentAddress: {type: String},
+        nationality: {type: String}
        //document.getElementById("demo").innerHTML = d.toUTCString();
     }
 );
