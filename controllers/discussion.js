@@ -130,16 +130,17 @@ module.exports = {
     },
 
     replyPost: (req, res) => {
+        console.log(req.body);
         let id = req.params.id;
+
         let replyContent = req.body.replyContent;
 
-        Discussion.findById(id).then(discussion => {
+        console.log(replyContent);
 
-            if (!req.isAuthenticated()) {
-                errorMsg = 'You must be logged in to make articles';
-            } else if (!req.body.replyContent) {
-                errorMsg = 'Must have content!';
-            }
+        replyContent.author = req.user.id;
+
+        Replying.create(replyContent).then(reply => {
+
 
         });
     }
