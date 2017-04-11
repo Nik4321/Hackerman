@@ -51,9 +51,10 @@ module.exports = {
     details: (req, res) => {
         let id = req.params.id;
 
-        Discussion.findById(id).populate('author').then(discussion =>{
+        Discussion.findById(id).populate('author').then(discussion => {
             res.render('discussion/details', discussion)
         });
+
     },
 
     editGet: (req, res) => {
@@ -127,12 +128,20 @@ module.exports = {
             }
         });
     },
-    replyGet: (req, res) => {
-      res.render('discussion/details/:id');
-    },
 
     replyPost: (req, res) => {
-        console.log(req.body);
+        let id = req.params.id;
+        let replyContent = req.body.replyContent;
+
+        Discussion.findById(id).then(discussion => {
+
+            if (!req.isAuthenticated()) {
+                errorMsg = 'You must be logged in to make articles';
+            } else if (!req.body.replyContent) {
+                errorMsg = 'Must have content!';
+            }
+
+        });
     }
 
 };

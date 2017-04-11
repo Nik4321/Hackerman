@@ -108,7 +108,7 @@ module.exports = {
             if(!user) {
                 errorMsg = "User does not exist!";
             } else {
-                //Check if user is Admin
+                // Check if user is Admin
             }
 
             if (errorMsg) {

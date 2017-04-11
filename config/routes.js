@@ -19,7 +19,6 @@ module.exports = (app) => {
     app.get('/user/details/:id', userController.details);
 
     app.get('/user/adminAdd', userController.adminGet);
-    //need fixing "CANNOT POST /user/adminAdd/"
     app.post('/user/adminAdd', userController.adminPost);
 
     app.get('/user/editProfile/:id', userController.editProfileGet);
@@ -29,6 +28,7 @@ module.exports = (app) => {
     app.get('/discussion/listAll', discussionController.discussionsGet);
 
     app.get('/discussion/details/:id', discussionController.details);
+    app.post('/discussion/details/:id', discussionController.replyPost);
 
     app.get('/discussion/create', discussionController.createGet);
     app.post('/discussion/create', discussionController.createPost);
@@ -38,9 +38,6 @@ module.exports = (app) => {
 
     app.get('/discussion/delete/:id', discussionController.deleteGet);
     app.post('/discussion/delete/:id', discussionController.deletePost);
-
-    app.get('/discussion/details/:id', discussionController.replyGet);
-    app.post('/discussion/details/:id', discussionController.replyPost);
 
     // News routes:
     app.get('/news/listAll', newsController.newsGet);
