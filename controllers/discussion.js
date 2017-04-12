@@ -57,7 +57,13 @@ module.exports = {
         let id = req.params.id;
 
         Discussion.findById(id).populate('author').then(discussion => {
-            res.render('discussion/details', discussion)
+            if (!req.user) {
+                res.render('discussion/details', {discussion: discussion, isUserAuthorized: false});
+                return;
+            }
+
+            let isUserAuthorized = req.user.isAdmin || req.user.isAuthorDiscussion(discussion);
+            res.render('discussion/details', {discussion: discussion, isUserAuthorized: isUserAuthorized})
         });
 
     },
@@ -73,11 +79,10 @@ module.exports = {
         }
 
         Discussion.findById(id).then(discussion => {
-            if (!req.user.userIsAdmin || !req.user.isAuthorDiscussion(discussion)) {
+            if (!req.user.isAdmin && !req.user.isAuthorDiscussion(discussion)) {
                 res.redirect('/');
                 return;
             }
-            User.create
             res.render('discussion/edit', discussion);
         });
     },
@@ -120,11 +125,10 @@ module.exports = {
         }
 
         Discussion.findById(id).then(discussion => {
-            req.user.isAdmin(false).then(admin => {
-                if (!isAdmin) {
-
-                }
-            })
+            if (!req.user.isAdmin && !req.user.isAuthorDiscussion(discussion)) {
+                res.redirect('/');
+                return;
+            }
 
             res.render('discussion/delete', discussion);
         });
