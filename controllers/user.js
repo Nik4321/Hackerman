@@ -117,7 +117,7 @@ module.exports = {
             } else {
                 User.update({email: adminArgs.email}, {$set: {isAdmin: true}})
                 .then(updateStatus => {
-                    res.redirect(req.originalUrl);
+                    res.render('user/adminAdd', {successMsg: 'User is now Admin!'});
                 });
             }
         });
