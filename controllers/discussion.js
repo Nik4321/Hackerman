@@ -16,11 +16,16 @@ module.exports = {
     createPost: (req, res) => {
         let discussionArgs = req.body;
 
+        if(!req.isAuthenticated()) {
+            req.session.returnUrl = req.originalUrl;
+
+            res.render('user/login', {error: 'Must be logged in to do that'});
+            return;
+        }
+
         let errorMsg = "";
 
-        if (!req.isAuthenticated()) {
-            errorMsg = 'You should be logged in to make articles';
-        } else if (!discussionArgs.title) {
+        if (!discussionArgs.title) {
             errorMsg = 'Invalid title!';
         }
 
@@ -61,10 +66,9 @@ module.exports = {
         let id = req.params.id;
 
         if(!req.isAuthenticated()) {
-            let returnUrl = `/discussion/edit/${id}`;
-            req.session.returnUrl = returnUrl;
+            req.session.returnUrl = req.originalUrl;
 
-            res.redirect('/user/login');
+            res.render('user/login', {error: 'Must be logged in to do that'});
             return;
         }
 
@@ -73,13 +77,20 @@ module.exports = {
                 res.redirect('/');
                 return;
             }
-
+            User.create
             res.render('discussion/edit', discussion);
         });
     },
 
     editPost: (req, res) => {
         let id = req.params.id;
+
+        if(!req.isAuthenticated()) {
+            req.session.returnUrl = req.originalUrl;
+
+            res.render('user/login', {error: 'Must be logged in to do that'});
+            return;
+        }
 
         let discussionArgs = req.body;
 
@@ -101,13 +112,33 @@ module.exports = {
     deleteGet: (req, res) => {
         let id = req.params.id;
 
+        if(!req.isAuthenticated()) {
+            req.session.returnUrl = req.originalUrl;
+
+            res.render('user/login', {error: 'Must be logged in to do that'});
+            return;
+        }
+
         Discussion.findById(id).then(discussion => {
+            req.user.isAdmin(false).then(admin => {
+                if (!isAdmin) {
+
+                }
+            })
+
             res.render('discussion/delete', discussion);
         });
     },
 
     deletePost: (req, res) => {
         let id = req.params.id;
+
+        if(!req.isAuthenticated()) {
+            req.session.returnUrl = req.originalUrl;
+
+            res.render('user/login', {error: 'Must be logged in to do that'});
+            return;
+        }
 
         Discussion.findOneAndRemove({_id: id}).populate('author').then(discussion => {
             let author = discussion.author;

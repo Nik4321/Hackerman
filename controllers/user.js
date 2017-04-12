@@ -85,6 +85,14 @@ module.exports = {
     details: (req, res) => {
         let id = req.params.id;
 
+        if(!req.isAuthenticated()) {
+            // linking to '/';
+            //req.session.returnUrl = req.originalUrl;
+
+            res.render('user/login', {error: 'Must be logged in to do that'});
+            return;
+        }
+
         User.findById(id).populate().then(user => {
             res.render('user/details', user)
         });
@@ -93,6 +101,13 @@ module.exports = {
     adminGet: (req, res) => {
         let id = req.params.id;
 
+        if(!req.isAuthenticated()) {
+            req.session.returnUrl = req.originalUrl;
+
+            res.render('user/login', {error: 'Must be logged in to do that'});
+            return;
+        }
+
         User.findById(id).populate().then(user => {
             res.render('user/adminAdd', user)
         })
@@ -100,6 +115,13 @@ module.exports = {
 
     adminPost: (req, res) => {
         let id = req.params.id;
+
+        if(!req.isAuthenticated()) {
+            req.session.returnUrl = req.originalUrl;
+
+            res.render('user/login', {error: 'Must be logged in to do that'});
+            return;
+        }
 
         let adminArgs = req.body;
         User.findOne({email: adminArgs.email}).then(user =>{
@@ -126,6 +148,13 @@ module.exports = {
     editProfileGet: (req, res) => {
         let id = req.params.id;
 
+        if(!req.isAuthenticated()) {
+            req.session.returnUrl = req.originalUrl;
+
+            res.render('user/login', {error: 'Must be logged in to do that'});
+            return;
+        }
+
         User.findById(id).populate().then(user => {
             res.render('user/editProfile', user)
         });
@@ -133,6 +162,13 @@ module.exports = {
 
     editProfilePost: (req, res) => {
         let id = req.params.id;
+
+        if(!req.isAuthenticated()) {
+            req.session.returnUrl = req.originalUrl;
+
+            res.render('user/login', {error: 'Must be logged in to do that'});
+            return;
+        }
 
         let editProfileArgs = req.body;
 
