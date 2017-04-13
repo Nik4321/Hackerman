@@ -21,6 +21,9 @@ body {
 .input-group-btn-double {
     shape-margin: 50%;
 }
+.list-group-item-cool {
+    font-size: medium;
+}
 
 article{
     background-color: #16191d;

@@ -1,30 +1,13 @@
 <div class="container body-content">
     <div class="row">
-        {{#each discussions}}
-            <div class="col-md-8">
-                <div class="sectionMain">
-                <div class="tactical_cont">
-                <article>
-                    <header>
-                        <h2>{{this.title}}</h2>
-                    </header>
-
-                    <p>{{this.content}}
-                    </p>
-
-                    <small class="author">
-                        {{this.author.fullName}}
-                    </small>
-
-                    <footer>
-                        <div class="pull-right">
-                            <a class="btn btn-default btn-xs" href="/discussion/details/{{this.id}}">Read more &raquo;</a>
-                        </div>
-                    </footer>
-                </article>
-                </div>
+        <br>
+        <br>
+            <div class="col-md-7">
+                <div class="list-group">
+                    {{#each discussions}}
+                        <a href="/discussion/details/{{this.id}}" class="list-group-item-cool" style="color: #3a5875">{{this.title}}</a>
+                    {{/each}}
                 </div>
             </div>
-        {{/each}}
     </div>
 </div>
