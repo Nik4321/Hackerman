@@ -98,7 +98,7 @@ module.exports = {
         });
     },
 
-    adminGet: (req, res) => {
+    adminSettingsGet: (req, res) => {
         let id = req.params.id;
 
         if(!req.isAuthenticated()) {
@@ -108,9 +108,12 @@ module.exports = {
             return;
         }
 
-        User.findById(id).populate().then(user => {
-            res.render('user/adminAdd', user)
-        })
+        if (!req.user.isAdmin) {
+            res.redirect('/');
+            return;
+        }
+
+        res.render('user/adminSettings');
     },
 
     adminPost: (req, res) => {
@@ -128,22 +131,55 @@ module.exports = {
 
             let errorMsg = '';
             if (!user) {
-                errorMsg = "User does not exist!";
+                errorMsg = 'User does not exist!';
+            } else if (req.user.email === adminArgs.email) {
+                errorMsg = 'Cannot make yourself into an admin!';
             } else if (user.isAdmin) {
-                errorMsg = "User is already Admin!"
-            }
+                errorMsg = 'User is already Admin!';
+            } 
 
             if (errorMsg) {
-                adminArgs.error = errorMsg;
-                res.render('user/adminAdd', adminArgs);
+                adminArgs.errorMsgForAdminAdd = errorMsg;
+                res.render('user/adminSettings', adminArgs);
             } else {
                 User.update({email: adminArgs.email}, {$set: {isAdmin: true}})
                 .then(updateStatus => {
-                    res.render('user/adminAdd', {successMsg: 'User is now Admin!'});
+                    res.render('user/adminSettings', {successMsgForAdminAdd: 'User is now Admin!'});
                 });
             }
         });
     },
+
+    userDelete: (req, res) => {
+
+        if(!req.isAuthenticated()) {
+            req.session.returnUrl = req.originalUrl;
+
+            res.render('user/login', {error: 'Must be logged in to do that'});
+            return;
+        }
+
+        let adminArgs = req.body;
+        
+        User.findOne({email: adminArgs.email}).then(user => {
+            
+            let errorMsg = '';
+            if (!user) {
+                errorMsg = "User does not exist!";
+            } else if (user.isAdmin) {
+                errorMsg = "Cannot delete other Admins!"
+            }
+
+            if (errorMsg) {
+                adminArgs.errorMsgForUserDelete = errorMsg;
+                res.render('user/adminSettings', adminArgs);
+            } else {
+                User.findOneAndRemove({email: adminArgs.email}).then(updateStatus => {
+                    res.render('user/adminSettings', {successMsgForUserDelete: 'User was deleted!'});
+                });
+            }
+        });
+    },    
 
     editProfileGet: (req, res) => {
         let id = req.params.id;
@@ -198,5 +234,6 @@ module.exports = {
                 res.redirect(`/user/details/${id}`);
             });
         }
-    }
+    },
+
 };
