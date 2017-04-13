@@ -126,13 +126,18 @@ module.exports = {
             return;
         }
 
+        if (!req.user.isAdmin) {
+            res.redirect('/');
+            return;
+        }
+
         let adminArgs = req.body;
-        User.findOne({email: adminArgs.email}).then(user =>{
+        User.findOne({email: adminArgs.emailAdminAdd}).then(user =>{
 
             let errorMsg = '';
             if (!user) {
                 errorMsg = 'User does not exist!';
-            } else if (req.user.email === adminArgs.email) {
+            } else if (req.user.email === adminArgs.emailAdminAdd) {
                 errorMsg = 'Cannot make yourself into an admin!';
             } else if (user.isAdmin) {
                 errorMsg = 'User is already Admin!';
@@ -142,7 +147,7 @@ module.exports = {
                 adminArgs.errorMsgForAdminAdd = errorMsg;
                 res.render('user/adminSettings', adminArgs);
             } else {
-                User.update({email: adminArgs.email}, {$set: {isAdmin: true}})
+                User.update({email: adminArgs.emailAdminAdd}, {$set: {isAdmin: true}})
                 .then(updateStatus => {
                     res.render('user/adminSettings', {successMsgForAdminAdd: 'User is now Admin!'});
                 });
@@ -159,9 +164,14 @@ module.exports = {
             return;
         }
 
+        if (!req.user.isAdmin) {
+            res.redirect('/');
+            return;
+        }
+
         let adminArgs = req.body;
         
-        User.findOne({email: adminArgs.email}).then(user => {
+        User.findOne({email: adminArgs.emailUserDelete}).then(user => {
             
             let errorMsg = '';
             if (!user) {
@@ -174,12 +184,50 @@ module.exports = {
                 adminArgs.errorMsgForUserDelete = errorMsg;
                 res.render('user/adminSettings', adminArgs);
             } else {
-                User.findOneAndRemove({email: adminArgs.email}).then(updateStatus => {
+                User.findOneAndRemove({email: adminArgs.emailUserDelete}).then(updateStatus => {
                     res.render('user/adminSettings', {successMsgForUserDelete: 'User was deleted!'});
                 });
             }
         });
-    },    
+    },
+
+    adminDelete: (req, res) => {
+
+        if(!req.isAuthenticated()) {
+            req.session.returnUrl = req.originalUrl;
+
+            res.render('user/login', {error: 'Must be logged in to do that'});
+            return;
+        }
+        if (!req.user.isAdmin) {
+            res.redirect('/');
+            return;
+        }
+
+        let adminArgs = req.body;
+
+        User.findOne({email: adminArgs.emailAdminDelete}).then(user => {
+            
+            let errorMsg = '';
+            let masterPass = 'ShadyMaster';
+            if (!user) {
+                errorMsg = "User does not exist!";
+            } else if(!user.isAdmin) {
+                errorMsg = "User is not admin!";
+            } else if (req.body.masterPassword !== masterPass) {
+                errorMsg = "Master Password is incorrect"
+            }
+
+            if (errorMsg) {
+                adminArgs.errorMsgForAdminDelete = errorMsg;
+                res.render('user/adminSettings', adminArgs);
+            } else {
+                User.findOneAndRemove({email: adminArgs.emailAdminDelete}).then(updateStatus => {
+                    res.render('user/adminSettings', {successMsgForAdminDelete: 'Admin was deleted!'});
+                });
+            }
+        });
+    },
 
     editProfileGet: (req, res) => {
         let id = req.params.id;

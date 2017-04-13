@@ -4,14 +4,13 @@
         <form class="form-horizontal" method="POST" action="/user/adminAdd">
             <fieldset>
                 <legend>Add Admin</legend>
-                <h5>Here you can change a user to an Admin.</h5>
                 <div class="form-group">
 
                     <div class="clearfix"></div>
                     <p align="center" style="color:red;">{{errorMsgForAdminAdd}}</p>
                     <p align="center" style="color:#009933;">{{successMsgForAdminAdd}}</p>
                     <div class="input-group col-md-8" style="margin-left: 16%">
-                        <input type="text" class="form-control" id="email" placeholder="Add Admin" required name="email">
+                        <input type="text" class="form-control" id="emailAdminAdd" placeholder="Add Admin" required name="emailAdminAdd">
                         <span class="input-group-btn">
                             <button type="submit" class="btn btn-success btn-block">Add Admin</button>
                         </span>
@@ -26,15 +25,38 @@
         <form class="form-horizontal" method="POST" action="/user/userDelete">
             <fieldset>
                 <legend>Delete User</legend>
-                <h5>Here you can delete a user that is not an Admin.</h5>
                 <div class="form-group">
 
                     <div class="clearfix"></div>
                     <p align="center" style="color:red;">{{errorMsgForUserDelete}}</p>
                     <p align="center" style="color:blueviolet;">{{successMsgForUserDelete}}</p>
                     <div class="input-group col-md-8" style="margin-left: 16%">
-                        <input type="text" class="form-control" id="email" placeholder="Delete User" required name="email">
+                        <input type="text" class="form-control" id="emailUserDelete" placeholder="Delete User" required name="emailUserDelete">
                         <span class="input-group-btn">
+                            <button type="submit" class="btn btn-success btn-block">Delete User</button>
+                        </span>
+                    </div>
+
+                    <div class="bot-border"></div>
+                    <div class="clearfix"></div>
+                </div>
+            </fieldset>
+        </form>
+
+        <form class="form-horizontal" method="POST" action="/user/adminDelete">
+            <fieldset>
+                <legend>Delete Admin</legend>
+                <div class="form-group">
+
+                    <div class="clearfix"></div>
+                    <p align="center" style="color:red;">{{errorMsgForAdminDelete}}</p>
+                    <p align="center" style="color:blueviolet;">{{successMsgForAdminDelete}}</p>
+                    <div class="input-group col-md-8" style="margin-left: 16%">
+                        <input type="text" class="form-control" id="emailAdminDelete" placeholder="Delete Admin" required name="emailAdminDelete">
+                        <br>
+                        <input type="password" class="form-control" id="masterPassword" placeholder="Master Password" required name="masterPassword">
+                        <!-- Needs a better button -->
+                        <span class="input-group-btn-lg">
                             <button type="submit" class="btn btn-success btn-block">Delete User</button>
                         </span>
                     </div>
