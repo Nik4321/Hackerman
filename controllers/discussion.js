@@ -63,7 +63,7 @@ module.exports = {
             }
 
             let isUserAuthorized = req.user.isAdmin || req.user.isAuthorDiscussion(discussion);
-            res.render('discussion/details', {discussion: discussion, isUserAuthorized: isUserAuthorized})
+            res.render('discussion/details', {user: req.user, discussion: discussion, isUserAuthorized: isUserAuthorized})
         });
 
     },
@@ -167,17 +167,10 @@ module.exports = {
     replyPost: (req, res) => {
         console.log(req.body);
         let id = req.params.id;
-
         let replyContent = req.body.replyContent;
-
         console.log(replyContent);
 
-        replyContent.author = req.user.id;
 
-        Replying.create(replyContent).then(reply => {
-
-
-        });
     }
 
 };
