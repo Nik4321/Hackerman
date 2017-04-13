@@ -1,0 +1,23 @@
+<div class="container body-content">
+    <div class="well col-lg-12">
+        <div class="row">
+            <div class="col-md-12">
+            <div class="page-header">
+               <h1>Your Discussions</h1>
+            </div>
+          <div class="row">
+              <div class="col-sm-12">
+                <ul class="list-group">
+                    {{#each discussions}}
+                    <li class="list-group-item"><a href="/discussion/details/{{this.id}}">{{this.title}}</a>
+                        <div class="pull-right">
+                            <a class="btn btn-success btn-xs" href="/discussion/edit/{{this.id}}">Edit &raquo;</a>
+                            <a class="btn btn-danger btn-xs" href="/discussion/delete/{{this.id}}">Delete &raquo;</a>
+                        </div>
+                    </li>
+                    {{/each}}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

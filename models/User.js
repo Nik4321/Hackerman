@@ -71,9 +71,11 @@ module.exports.seedAdmin = () => {
                news: [],
                salt: salt,
                isAdmin: true,
-               joinDate: Date.now()
+               joinDate: Date.now(),
+               birthPlace: 'Sofia',
+               currentAddress: 'Shady',
+               nationality: 'Bulgarian'
             };
-            // Needs fixing for admins
             User.create(user).then(err => {
                   if(err) {
                      console.log(err.message);

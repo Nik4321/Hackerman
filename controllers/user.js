@@ -1,4 +1,5 @@
 const User = require('mongoose').model('User');
+const Discussion = require('mongoose').model('Discussion');
 const encryption = require('./../utilities/encryption');
 
 module.exports = {
@@ -86,7 +87,7 @@ module.exports = {
         let id = req.params.id;
 
         if(!req.isAuthenticated()) {
-            // linking to '/';
+            // linking to '/'. Neave it like this
             //req.session.returnUrl = req.originalUrl;
 
             res.render('user/login', {error: 'Must be logged in to do that'});
@@ -207,7 +208,7 @@ module.exports = {
         let adminArgs = req.body;
 
         User.findOne({email: adminArgs.emailAdminDelete}).then(user => {
-            
+
             let errorMsg = '';
             let masterPass = 'ShadyMaster';
             if (!user) {
@@ -226,6 +227,19 @@ module.exports = {
                     res.render('user/adminSettings', {successMsgForAdminDelete: 'Admin was deleted!'});
                 });
             }
+        });
+    },
+
+    userDiscussionsGet: (req, res) => {
+        if(!req.isAuthenticated()) {
+            req.session.returnUrl = req.originalUrl;
+
+            res.render('user/login', {error: 'Must be logged in to do that'});
+            return;
+        }        
+
+        Discussion.find({author: req.user._id}).populate('author').then(discussions => {
+            res.render('user/userDiscussions', {discussions: discussions})
         });
     },
 
