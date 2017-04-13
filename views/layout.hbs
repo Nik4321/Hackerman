@@ -13,10 +13,10 @@
 </head>
 <body>
 <header>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <nav class="navbar navbar-cool navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="/">HACKERMAN FORUM</a>
+                <a class="navbar-brand font-color"  href="/">HACKERMAN FORUM</a>
 
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
@@ -26,20 +26,20 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-left">
-                    <li><a href="/">HOME</a></li>
-                    <li><a href="/discussion/listAll">DISCUSSIONS</a></li>
-                    <li><a href="/news/listAll"><i class="fa fa-newspaper-o" aria-hidden="true"></i> NEWS</a></li>
+                    <li><a href="/" class="font-color">HOME</a></li>
+                    <li><a href="/discussion/listAll" class="font-color">DISCUSSIONS</a></li>
+                    <li><a href="/news/listAll" class="font-color"><i class="fa fa-newspaper-o" aria-hidden="true"></i> NEWS</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     {{#if user}}
-                    <li><a href="/user/details/{{user.id}}"><i class="fa fa-user-circle" aria-hidden="true"></i> {{user.fullName}}</a></li>
-                    <li><a href="/news/create"><i class="fa fa-plus-square" aria-hidden="true"></i> PUBLISH NEWS</a></li>
-                    <li><a href="/discussion/create"><i class="fa fa-plus-square" aria-hidden="true"></i> NEW DISCUSSION</a></li>
-                    <li><a href="/user/logout"><i class="fa fa-sign-out" aria-hidden="true"></i> LOGOUT</a></li>
+                    <li><a href="/user/details/{{user.id}}" class="font-color"><i class="fa fa-user-circle" aria-hidden="true"></i> {{user.fullName}}</a></li>
+                    <li><a href="/news/create" class="font-color"><i class="fa fa-plus-square" aria-hidden="true"></i> PUBLISH NEWS</a></li>
+                    <li><a href="/discussion/create" class="font-color"><i class="fa fa-plus-square" aria-hidden="true"></i> NEW DISCUSSION</a></li>
+                    <li><a href="/user/logout" class="font-color"><i class="fa fa-sign-out" aria-hidden="true"></i> LOGOUT</a></li>
                     {{/if}}
                     {{#unless user}}
-                    <li><a href="/user/register"><i class="fa fa-user-plus" aria-hidden="true"></i> SIGN UP</a></li>
-                    <li><a href="/user/login"><i class="fa fa-sign-in" aria-hidden="true"></i> LOGIN</a></li>
+                    <li><a href="/user/register" class="font-color"><i class="fa fa-user-plus" aria-hidden="true"></i> SIGN UP</a></li>
+                    <li><a href="/user/login" class="font-color"><i class="fa fa-sign-in" aria-hidden="true"></i> LOGIN</a></li>
                     {{/unless}}
                 </ul>
             </div>

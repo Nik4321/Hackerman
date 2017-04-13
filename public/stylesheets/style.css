@@ -1,6 +1,17 @@
 body {
     padding-top: 70px;
-    background-color: #2f3b49;
+    background-size: cover;
+    background-image: url(1511.jpg);
+    background-repeat: no-repeat;
+
+}
+
+.navbar-cool {
+    background-color: #3e7996;
+}
+
+.font-color {
+    color: #e4f8e3;
 }
 
 article{
