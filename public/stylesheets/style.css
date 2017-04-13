@@ -14,7 +14,13 @@ body {
 .font-color-next {
     color: #3a5875;
 }
-
+.well {
+    background: #abc6ce;
+    margin-left: 13%;
+}
+.input-group-btn-double {
+    shape-margin: 50%;
+}
 
 article{
     background-color: #16191d;
