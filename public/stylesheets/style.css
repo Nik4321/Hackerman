@@ -32,6 +32,17 @@ body {
 }
 .list-group-item-cool {
     font-size: medium;
+    border-color: #3e7996;
+}
+.navbar-center
+{
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    text-align: center;
+    margin: auto;
+    height:100%;
 }
 
 article{

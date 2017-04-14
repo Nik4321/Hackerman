@@ -4,7 +4,7 @@ const Replying = require('mongoose').model('Replying');
 module.exports = {
 
     discussionsGet: (req, res) => {
-        Discussion.find({}).limit(6).populate('author').then(discussions => {
+        Discussion.find({}).sort({date: -1}).populate('author').then(discussions => {
         res.render('discussion/listAll', {discussions: discussions});
         });
     },
