@@ -8,6 +8,15 @@ body {
 .navbar-cool {
     background-color: #3e7996;
 }
+.btn-cool {
+    background-color: #3e7996;
+    color: #e4f8e3;
+}
+.btn-cool:hover {
+    color:#ffffff;
+    background-color: #98b5bd;
+    border-color: #98b5bd;
+}
 .font-color {
     color: #e4f8e3;
 }

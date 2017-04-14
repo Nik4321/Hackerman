@@ -1,7 +1,7 @@
 
 <div class="container body-content span=8 offset=2">
     <div class="well col-lg-9">
-        <a class="btn btn-default btn-xs pull-right" href="/">Back &raquo;</a>
+        <a class="btn btn-default btn-xs pull-right" href="/user/details/{{user.id}}">Back &raquo;</a>
         <form class="form-horizontal" method="POST" action="/user/adminAdd">
             <fieldset>
                 <legend>Add Admin</legend>
@@ -52,15 +52,25 @@
                     <div class="clearfix"></div>
                     <p align="center" style="color:red;">{{errorMsgForAdminDelete}}</p>
                     <p align="center" style="color:blueviolet;">{{successMsgForAdminDelete}}</p>
-                    <div class="input-group col-md-8" style="margin-left: 16%">
-                        <input type="text" class="form-control" id="emailAdminDelete" placeholder="Delete Admin" required name="emailAdminDelete">
-                        <br>
-                        <input type="password" class="form-control" id="masterPassword" placeholder="Master Password" required name="masterPassword">
-                        <!-- Needs a better button -->
-                        <span class="input-group-btn">
-                            <button type="submit" class="btn btn-success btn-block btn-lg">Delete User</button>
-                        </span>
-                    </div>
+
+                        <div class="input-group" style="margin-left: 16%">
+
+                            <div class="col-md-5">
+                                <input type="text" class="form-control" id="emailAdminDelete" placeholder="Delete Admin" required name="emailAdminDelete">
+                            </div>
+
+                            <div class="col-md-5">
+                                <input type="password" class="form-control" id="masterPassword" placeholder="Master Password" required name="masterPassword">
+                            </div>
+
+                            <!-- Still needs little fixing. -->
+                            <div class="col-sm-2">
+                                <span class="input-group-btn">
+                                <button type="submit" class="btn btn-success btn-block">Delete Admin</button>
+                            </span>
+                            </div>
+
+                        </div>
 
                     <div class="bot-border"></div>
                     <div class="clearfix"></div>
