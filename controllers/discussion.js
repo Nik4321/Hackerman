@@ -165,12 +165,24 @@ module.exports = {
     },
 
     replyPost: (req, res) => {
-        console.log(req.body);
-        let id = req.params.id;
+        let replyParts = req.body;
+
         let replyContent = req.body.replyContent;
         console.log(replyContent);
 
+        let userId = req.user.id;
+        replyParts.author = userId;
 
+        Replying.create(replyParts).then(reply => {
+            req.user.reply.push(reply.id);
+            req.user.save(err => {
+               if (err) {
+                res.render('/');
+               } else{
+                res.redirect('/');
+               }
+            });
+        });
     }
 
 };
