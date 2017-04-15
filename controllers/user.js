@@ -12,11 +12,15 @@ module.exports = {
 
         User.findOne({email: registerArgs.email}).then(user => {
             let errorMsg = '';
-            if (user) {
-                errorMsg = 'User with the same username exists!';
+            let regexForEmail = new RegExp (/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
+            
+            if (!regexForEmail.test(registerArgs.email)){
+                errorMsg = 'Please enter a valid email!';
+            } else if (user) {
+                errorMsg = 'User with the same email exists!';
             } else if (registerArgs.password !== registerArgs.repeatedPassword) {
                 errorMsg = 'Passwords do not match!'
-            }
+            }  
 
             if (errorMsg) {
                 registerArgs.error = errorMsg;
@@ -54,7 +58,7 @@ module.exports = {
     loginPost: (req, res) => {
         let loginArgs = req.body;
         User.findOne({email: loginArgs.email}).then(user => {
-            if (!user ||!user.authenticate(loginArgs.password)) {
+            if (!user || !user.authenticate(loginArgs.password)) {
                 let errorMsg = 'Either username or password is invalid!';
                 loginArgs.error = errorMsg;
                 res.render('user/login', loginArgs);
