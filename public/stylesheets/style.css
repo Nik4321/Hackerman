@@ -46,10 +46,10 @@ body {
 }
 
 article{
-    background-color: #16191d;
+    background-color: #abc6ce;
     padding: 40px;
     margin: 10px auto;
-    border: 2px solid black;
+    border: 2px solid #3e7996;
     border-bottom-style: dashed;
     border-radius: 1px;
 }
@@ -62,10 +62,10 @@ article{
     border-radius: 1px;
 }
 .sectionMain {
-    background-color: #16191d;
-    padding: 10px;
+    background-color: #3e7996;
+    padding: 5px;
     margin: 20px auto;
-    border: 1px solid #282f38;
+    border: 1px solid #3e7996;
     border-radius: 1px;
 }
 h2, h3, p, em{
