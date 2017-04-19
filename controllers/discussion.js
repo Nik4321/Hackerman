@@ -165,23 +165,31 @@ module.exports = {
     },
 
     replyPost: (req, res) => {
-        let replyParts = req.body;
-
-        let replyContent = req.body.replyContent;
-        console.log(replyContent);
-
+        let id = req.params.id;
+        let replyArgs = req.body;
         let userId = req.user.id;
-        replyParts.author = userId;
 
-        Replying.create(replyParts).then(reply => {
-            req.user.reply.push(reply.id);
-            req.user.save(err => {
-               if (err) {
-                res.render('/');
-               } else{
-                res.redirect('/');
-               }
+
+        console.log(replyArgs);
+        console.log(replyArgs.replyContent);
+        console.log(userId);
+
+        let reply = {
+          content: replyArgs.replyContent,
+            author: userId,
+        };
+
+        replyArgs.author = userId;
+
+        Replying.create(reply).then(reply => {
+            console.log('then(reply)', reply);
+
+            Discussion.findById({_id: id}).then(discussion => {
+                discussion.reply.push(reply);
+                discussion.save();
             });
+
+
         });
     }
 

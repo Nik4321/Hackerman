@@ -73,7 +73,7 @@ module.exports.seedAdmin = () => {
                news: [],
                salt: salt,
                isAdmin: true,
-               joinDate: Date.now(),
+               joinDate: dateFormat(now, "isoDate"),
                birthPlace: 'Sofia',
                currentAddress: 'Shady',
                nationality: 'Bulgarian'
