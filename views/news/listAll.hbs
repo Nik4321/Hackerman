@@ -1,29 +1,27 @@
 <div class="container body-content">
     <div class="row">
 
-    <div class="col-md-12">
-    <div class="sectionMain">
-        {{#each news}}
-        <br>
-                <article>
-                    <header>
-                        <h2>{{this.title}}</h2>
-                    </header>
+        <div class="col-md-12">
+            <div class="sectionMain">
+                {{#each news}}
+                    <br>
+                    <article>
+                        <header>
+                         <h2>{{this.title}}</h2>
+                        </header>
 
-                    <small class="author">
-                        {{this.author.fullName}}
-                    </small>
+                        <small class="author">
+                            {{this.author.fullName}}
+                        </small>
 
-                    <footer>
-                        <div class="pull-right">
-                            <a class="btn btn-default btn-xs" href="/news/details/{{this.id}}">Read more &raquo;</a>
-                        </div>
-                    </footer>
-                </article>
-
-
-        {{/each}}
-    </div>
-    </div>
+                        <footer>
+                            <div class="pull-right">
+                                <a class="btn btn-default btn-xs" href="/news/details/{{this.id}}">Read more &raquo;</a>
+                            </div>
+                        </footer>
+                    </article>
+                {{/each}}
+            </div>
+        </div>
     </div>
 </div>

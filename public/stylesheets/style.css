@@ -63,12 +63,19 @@ article{
 }
 .sectionMain {
     background-color: #3e7996;
-    padding: 5px;
+    padding: 10px;
     margin: 20px auto;
     border: 1px solid #3e7996;
     border-radius: 1px;
 }
-h2, h3, p, em{
+.replyMain {
+    background-color: #789b9c;
+    padding: 40px;
+    margin: 20px;
+    border: 2px solid white;
+    border-radius: 100px;
+}
+h2, h3, p, em, h4{
     color: #3e7996;
 }
 
