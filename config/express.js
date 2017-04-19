@@ -4,8 +4,12 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const passport = require('passport');
+const favicon = require('serve-favicon');
 
 module.exports = (app, config) => {
+    // Favicon setup.
+    app.use(favicon(path.join(config.rootFolder, 'public/favicon', 'favicon.ico')))
+
     // View engine setup.
     app.set('views', path.join(config.rootFolder, '/views'));
     app.set('view engine', 'hbs');
