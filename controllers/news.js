@@ -3,7 +3,7 @@ const News = require('mongoose').model('News');
 module.exports = {
 
     newsGet: (req, res) => {
-        News.find({}).limit(6).populate('author').then(news => {
+        News.find({}).sort({date: -1}).limit(10).populate('author').then(news => {
             res.render('news/listAll', {news: news});
         });
     },
@@ -49,9 +49,9 @@ module.exports = {
             req.user.news.push(news.id);
             req.user.save(err => {
                 if (err) {
-                    res.redirect('/', {error: err.message});
+                    res.redirect('/news/listAll', {error: err.message});
                 } else {
-                    res.redirect('/');
+                    res.redirect('/news/listAll');
                 }
             });
         });

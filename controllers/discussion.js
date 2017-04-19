@@ -44,9 +44,9 @@ module.exports = {
             req.user.discussions.push(discussion.id);
             req.user.save(err => {
                 if (err) {
-                    res.redirect('/', {error: err.message});
+                    res.redirect('/discussion/listAll', {error: err.message});
                 } else {
-                    res.redirect('/');
+                    res.redirect('/discussion/listAll');
                 }
             });
         });
