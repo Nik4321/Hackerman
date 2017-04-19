@@ -1,0 +1,26 @@
+<div class="container body-content">
+    <div class="well col-lg-9">
+        <a class="btn btn-default btn-xs pull-right" href="/user/details/{{user.id}}">Back &raquo;</a>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="page-header">
+                    <h1>Your News</h1>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <ul class="list-group">
+                            {{#each news}}
+                                <li class="list-group-item"><a href="/news/details/{{this.id}}">{{this.title}}</a>
+                                    <div class="pull-right">
+                                        <a class="btn btn-success btn-xs" href="/news/edit/{{this.id}}">Edit &raquo;</a>
+                                        <a class="btn btn-danger btn-xs" href="/news/delete/{{this.id}}">Delete &raquo;</a>
+                                    </div>
+                                </li>
+                            {{/each}}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
