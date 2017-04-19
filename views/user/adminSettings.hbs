@@ -8,8 +8,12 @@
                 <div class="form-group">
 
                     <div class="clearfix"></div>
+                    {{#if errorMsgForAdminAdd}}
                     <p align="center" style="color:red;">{{errorMsgForAdminAdd}}</p>
+                    {{/if}}
+                    {{#if successMsgForAdminAdd}}
                     <p align="center" style="color:#009933;">{{successMsgForAdminAdd}}</p>
+                    {{/if}}
                     <div class="input-group col-md-8" style="margin-left: 16%">
                         <input type="text" class="form-control" id="emailAdminAdd" placeholder="Add Admin" required name="emailAdminAdd">
                         <span class="input-group-btn">
@@ -29,8 +33,12 @@
                 <div class="form-group">
 
                     <div class="clearfix"></div>
+                    {{#if errorMsgForUserDelete}}
                     <p align="center" style="color:red;">{{errorMsgForUserDelete}}</p>
+                    {{/if}}
+                    {{#if successMsgForUserDelete}}
                     <p align="center" style="color:blueviolet;">{{successMsgForUserDelete}}</p>
+                    {{/if}}
                     <div class="input-group col-md-8" style="margin-left: 16%">
                         <input type="text" class="form-control" id="emailUserDelete" placeholder="Delete User" required name="emailUserDelete">
                         <span class="input-group-btn">
@@ -50,9 +58,12 @@
                 <div class="form-group">
 
                     <div class="clearfix"></div>
+                    {{#if errorMsgForAdminDelete}}
                     <p align="center" style="color:red;">{{errorMsgForAdminDelete}}</p>
+                    {{/if}}
+                    {{#if successMsgForAdminDelete}}
                     <p align="center" style="color:blueviolet;">{{successMsgForAdminDelete}}</p>
-
+                    {{/if}}
                         <div class="input-group" style="margin-left: 16%">
 
                             <div class="col-md-5">

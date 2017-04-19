@@ -13,7 +13,7 @@ module.exports = {
         User.findOne({email: registerArgs.email}).then(user => {
             let errorMsg = '';
             let regexForEmail = new RegExp (/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
-            
+
             if (!regexForEmail.test(registerArgs.email)){
                 errorMsg = 'Please enter a valid email!';
             } else if (user) {
@@ -91,7 +91,8 @@ module.exports = {
         let id = req.params.id;
 
         if(!req.isAuthenticated()) {
-            // linking to '/'. Neave it like this
+            // Leave it like this
+            // linking to '/'.
             //req.session.returnUrl = req.originalUrl;
 
             res.render('user/login', {error: 'Must be logged in to do that'});
@@ -275,31 +276,19 @@ module.exports = {
         let editProfileArgs = req.body;
 
         let errorMsg = '';
-        if (!editProfileArgs.fullName) {
-            errorMsg = 'Invalid Full Name';
-        } else if (!editProfileArgs.email) {
-            errorMsg = 'Invalid Email';
-        } // else if (editProfileArgs.email === req.params.email) {
-        //    errorMsg = 'Cannot change email to same';
-        //} else if (editProfileArgs.fullname === req.params.fullName) {
-        //    errorMsg = 'Cannot change full name to same';
-        //}
-
-        if (errorMsg) {
-            editProfileArgs.error = errorMsg;
-            res.render('/user/editProfile/:id', editProfileArgs);
-        } else {
-            User.update({_id: id}, {$set: {
-                fullName: editProfileArgs.fullName,
-                email: editProfileArgs.email,
-                birthDate: editProfileArgs.birthDate,
-                birthPlace: editProfileArgs.birthPlace,
-                currentAddress: editProfileArgs.currentAddress,
-                nationality: editProfileArgs.nationality
-            }}).then(updateStatus => {
-                res.redirect(`/user/details/${id}`);
-            });
-        }
+        let regexForEmail = new RegExp (/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
+        
+            
+        User.update({_id: id}, {$set: {
+            fullName: editProfileArgs.fullName,
+            birthDate: editProfileArgs.birthDate,
+            birthPlace: editProfileArgs.birthPlace,
+            currentAddress: editProfileArgs.currentAddress,
+            nationality: editProfileArgs.nationality
+        }}).then(updateStatus => {
+            res.redirect(`/user/details/${id}`);
+        });
+    
     },
 
 };

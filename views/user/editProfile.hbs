@@ -13,13 +13,6 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="col-sm-4 control-label">Email</label>
-                    <div class="col-sm-4 ">
-                        <input type="text" class="form-control" id="email" value="{{user.email}}" name="email">
-                    </div>
-                </div>
-
-                <div class="form-group">
                     <label class="col-sm-4 control-label">Date of Birth</label>
                     <div class="col-sm-4 ">
                         <input type="date" class="form-control" id="birthDate" value="{{user.birthDate}}" name="birthDate">
@@ -49,7 +42,9 @@
 
                 <div class="form-group">
                     <div class="col-sm-4 col-sm-offset-4">
+                        {{#if error}}
                         <p style="color:red;">{{error}}</p>
+                        {{/if}}
                         <a class="btn btn-default" href="/user/details/{{user.id}}">Cancel</a>
                         <button type="submit" class="btn btn-success">Update Profile</button>
                     </div>

@@ -33,11 +33,8 @@
                                 </span>
                             </div>
 
-                            <p align="center" style="color:red;">{{error}}</p>
-                            <p align="center" style="color:#009933;">{{successMsg}}</p>
-
                             <div class="btn-group btn-group-justified">
-                                <a href="/user/EditProfile/{{user.id}}" class="btn btn-cool">User Settings</a>
+                                <a href="/user/editProfile/{{user.id}}" class="btn btn-cool">User Settings</a>
                                 <a href="/user/userDiscussions" class="btn btn-cool">User's Discussions</a>
                                 <a href="#" class="btn btn-cool">User's News</a>
                                 {{#if user.isAdmin}}
