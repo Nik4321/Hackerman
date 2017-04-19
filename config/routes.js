@@ -49,6 +49,7 @@ module.exports = (app) => {
     app.get('/news/listAll', newsController.newsGet);
 
     app.get('/news/details/:id', newsController.details);
+    app.post('/news/details/:id', newsController.replyPost);
 
     app.get('/news/create', newsController.createGet);
     app.post('/news/create', newsController.createPost);

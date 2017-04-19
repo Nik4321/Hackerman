@@ -57,14 +57,14 @@ module.exports = {
         let id = req.params.id;
 
         Discussion.findById(id).populate('author').then(discussion => {
-            Replying.find({idDiscussion: discussion._id}).populate('author').then(replys => {
+            Replying.find({idDiscussion: discussion._id}).populate('author').then(replies => {
                 if (!req.user) {
-                    res.render('discussion/details', {discussion: discussion, replys: replys, isUserAuthorized: false});
+                    res.render('discussion/details', {discussion: discussion, replies: replies, isUserAuthorized: false});
                     return;
                }
 
             let isUserAuthorized = req.user.isAdmin || req.user.isAuthorDiscussion(discussion);
-            res.render('discussion/details', {user: req.user, discussion: discussion, replys: replys, isUserAuthorized: isUserAuthorized})
+            res.render('discussion/details', {user: req.user, discussion: discussion, replies: replies, isUserAuthorized: isUserAuthorized})
             });
         });
 
@@ -156,7 +156,7 @@ module.exports = {
                 let errorMsg = 'Discussion was not found for the author!';
                 res.render('discussion/delete', {error: errorMsg});
             } else {
-            // Remove count elements after given index (inclusive).
+                // Remove count elements after given index (inclusive).
                 let count = 1;
                 author.discussions.splice(index, count);
                 author.save().then((user) => {
@@ -191,7 +191,6 @@ module.exports = {
         };
 
         Replying.create(reply).then(reply => {
-
             Discussion.findById({_id: id}).then(discussion => {
                 discussion.reply.push(reply);
                 discussion.save(err => {
