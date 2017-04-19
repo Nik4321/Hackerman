@@ -49,9 +49,9 @@ article{
     background-color: #abc6ce;
     padding: 40px;
     margin: 10px auto;
-    border: 2px solid #3e7996;
+    border: 2px solid white;
     border-bottom-style: dashed;
-    border-radius: 1px;
+    border-radius: 4px;
 }
 .tactical_cont{
     background: #22282f url(content-bg.png) repeat 0 0;

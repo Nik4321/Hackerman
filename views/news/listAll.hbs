@@ -1,9 +1,10 @@
 <div class="container body-content">
     <div class="row">
-        {{#each news}}
-            <div class="col-md-6">
-                <div class="sectionMain">
 
+    <div class="col-md-12">
+    <div class="sectionMain">
+        {{#each news}}
+        <br>
                 <article>
                     <header>
                         <h2>{{this.title}}</h2>
@@ -20,8 +21,9 @@
                     </footer>
                 </article>
 
-                </div>
-            </div>
+
         {{/each}}
+    </div>
+    </div>
     </div>
 </div>

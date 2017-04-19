@@ -188,8 +188,6 @@ module.exports = {
                 discussion.reply.push(reply);
                 discussion.save();
             });
-
-
         });
     }
 
