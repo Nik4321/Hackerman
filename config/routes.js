@@ -25,6 +25,7 @@ module.exports = (app) => {
     app.post('/user/adminDelete', userController.adminDelete);
 
     app.get('/user/userDiscussions', userController.userDiscussionsGet);
+    app.get('/user/userNews', userController.userNewsGet);
 
     app.get('/user/editProfile/:id', userController.editProfileGet);
     app.post('/user/editProfile/:id', userController.editProfilePost);

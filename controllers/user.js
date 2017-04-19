@@ -1,5 +1,6 @@
 const User = require('mongoose').model('User');
 const Discussion = require('mongoose').model('Discussion');
+const News = require('mongoose').model('News');
 const encryption = require('./../utilities/encryption');
 
 module.exports = {
@@ -247,6 +248,19 @@ module.exports = {
 
         Discussion.find({author: req.user._id}).populate('author').then(discussions => {
             res.render('user/userDiscussions', {discussions: discussions})
+        });
+    },
+
+    userNewsGet: (req, res) => {
+        if(!req.isAuthenticated()) {
+            req.session.returnUrl = req.originalUrl;
+
+            res.render('user/login', {error: 'Must be logged in to do that'});
+            return;
+        }
+
+        News.find({author: req.user._id}).populate('author').then(news => {
+            res.render('user/userNews', {news: news})
         });
     },
 
