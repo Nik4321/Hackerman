@@ -26,6 +26,11 @@
                 </footer>
             </article>
 
+            {{#each replys}}
+                <h1>{{this.content}}</h1>
+                <p>{{this.author.fullName}}</p>
+                <p>{{this.date}}</p>
+            {{/each}}
         <form class="form-horizontal" method="POST" action="/discussion/details/{{discussion.id}}">
             <fieldset>
                 <div class="form-group">

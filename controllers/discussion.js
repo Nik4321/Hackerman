@@ -5,7 +5,7 @@ module.exports = {
 
     discussionsGet: (req, res) => {
         Discussion.find({}).sort({date: -1}).populate('author').then(discussions => {
-        res.render('discussion/listAll', {discussions: discussions});
+            res.render('discussion/listAll', {discussions: discussions});
         });
     },
 
@@ -57,13 +57,15 @@ module.exports = {
         let id = req.params.id;
 
         Discussion.findById(id).populate('author').then(discussion => {
-            if (!req.user) {
-                res.render('discussion/details', {discussion: discussion, isUserAuthorized: false});
-                return;
-            }
+            Replying.find({idDiscussion: discussion._id}).populate('author').then(replys => {
+                if (!req.user) {
+                    res.render('discussion/details', {discussion: discussion, replys: replys, isUserAuthorized: false});
+                    return;
+               }
 
             let isUserAuthorized = req.user.isAdmin || req.user.isAuthorDiscussion(discussion);
-            res.render('discussion/details', {user: req.user, discussion: discussion, isUserAuthorized: isUserAuthorized})
+            res.render('discussion/details', {user: req.user, discussion: discussion, replys: replys, isUserAuthorized: isUserAuthorized})
+            });
         });
 
     },
@@ -166,27 +168,39 @@ module.exports = {
 
     replyPost: (req, res) => {
         let id = req.params.id;
+
+        if(!req.isAuthenticated()) {
+            req.session.returnUrl = req.originalUrl;
+
+            res.render('user/login', {error: 'Must be logged in to do that'});
+            return;
+        }
+        
         let replyArgs = req.body;
         let userId = req.user.id;
 
-
-        console.log(replyArgs);
-        console.log(replyArgs.replyContent);
-        console.log(userId);
+        if (!replyArgs.replyContent) {
+            res.redirect(req.originalUrl);
+            return;
+        }
 
         let reply = {
           content: replyArgs.replyContent,
-            author: userId,
+          author: userId,
+          idDiscussion: id
         };
 
-        replyArgs.author = userId;
-
         Replying.create(reply).then(reply => {
-            console.log('then(reply)', reply);
 
             Discussion.findById({_id: id}).then(discussion => {
                 discussion.reply.push(reply);
-                discussion.save();
+                discussion.save(err => {
+                    if (err) {
+                        res.render(`discussion/details/${id}`, {error: err.message});
+                    } else {
+                        res.redirect(req.originalUrl);
+                    }
+                });
             });
         });
     }
