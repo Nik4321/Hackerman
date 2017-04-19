@@ -20,7 +20,9 @@ module.exports = {
                 errorMsg = 'User with the same email exists!';
             } else if (registerArgs.password !== registerArgs.repeatedPassword) {
                 errorMsg = 'Passwords do not match!'
-            }  
+            } else if (registerArgs.password.length < 6) {
+                errorMsg = 'Password must be at least 6 characters';
+            }
 
             if (errorMsg) {
                 registerArgs.error = errorMsg;

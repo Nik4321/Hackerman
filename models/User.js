@@ -1,5 +1,8 @@
 const mongoose = require('mongoose');
+const dateFormat = require('dateformat');
 const encryption = require('./../utilities/encryption');
+
+let now = new Date().now;
 
 let userSchema = mongoose.Schema(
    {
@@ -10,12 +13,11 @@ let userSchema = mongoose.Schema(
         news: {type: [mongoose.Schema.Types.ObjectId], default: []},
         salt: {type: String, required: true},
         isAdmin: {type: Boolean, default: false},
-        joinDate: {type: Date, default: Date.now()},
-        birthDate: {type: Date.parse('DD/MM/YYYY') },
+        joinDate: {type: String, default: dateFormat(now, "isoDate")},
+        birthDate: {type: String},
         birthPlace: {type: String},
         currentAddress: {type: String},
         nationality: {type: String}
-       //document.getElementById("demo").innerHTML = d.toUTCString();
     }
 );
 
