@@ -47,7 +47,7 @@ module.exports = {
                             return;
                         }
 
-                        res.redirect('/')
+                        res.redirect(`/user/details/${user._id}`)
                     })
                 });
             }
@@ -75,7 +75,7 @@ module.exports = {
                     return;
                 }
 
-                let returnUrl = '/';
+                let returnUrl = `/user/details/${user._id}`;
                 if (req.session.returnUrl) {
                     returnUrl = req.session.returnUrl;
                     delete req.session.returnUrl;
@@ -90,21 +90,20 @@ module.exports = {
         res.redirect('/');
     },
 
-    details: (req, res) => {
+    details: (req, res, next) => {
         let id = req.params.id;
 
         if(!req.isAuthenticated()) {
-            // Leave it like this
-            // linking to '/'.
-            //req.session.returnUrl = req.originalUrl;
-
+        //  Leave it like this
+        //  linking to '/'.
+        //  req.session.returnUrl = req.originalUrl;
             res.render('user/login', {error: 'Must be logged in to do that'});
             return;
         }
 
         User.findById(id).populate().then(user => {
             res.render('user/details', user)
-        });
+        }).catch(next);
     },
 
     adminSettingsGet: (req, res) => {

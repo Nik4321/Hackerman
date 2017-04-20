@@ -56,7 +56,7 @@ module.exports = {
         });
     },
 
-    details: (req, res) => {
+    details: (req, res, next) => {
         let id = req.params.id;
 
         News.findById(id).populate('author').then(news => {
@@ -68,11 +68,11 @@ module.exports = {
                let isUserAuthorized = req.user.isAdmin;
                res.render('news/details', {news: news, replies: replies, isUserAuthorized: isUserAuthorized})         
             });
-        });
+        }).catch(next);
 
     },    
 
-    editGet: (req, res) => {
+    editGet: (req, res, next) => {
         let id = req.params.id;
 
         if(!req.isAuthenticated()) {
@@ -88,10 +88,10 @@ module.exports = {
                 return;
             }            
             res.render('news/edit', news);
-        });
+        }).catch(next);
     },
 
-    editPost: (req, res) => {
+    editPost: (req, res, next) => {
         let id = req.params.id;
 
         if(!req.isAuthenticated()) {
@@ -114,11 +114,11 @@ module.exports = {
             News.update({_id: id}, {$set: {title: newsArgs.title, content: newsArgs.content}})
             .then(updateStatus => {
                 res.redirect(`/news/details/${id}`);
-            });
+            }).catch(next);
         }
     },
 
-    deleteGet: (req, res) => {
+    deleteGet: (req, res, next) => {
         let id = req.params.id;
 
         if(!req.isAuthenticated()) {
@@ -135,10 +135,10 @@ module.exports = {
             }
 
             res.render('news/delete', news);
-        });
+        }).catch(next);
     },
 
-    deletePost: (req, res) => {
+    deletePost: (req, res, next) => {
         let id = req.params.id;
 
         if(!req.isAuthenticated()) {
@@ -165,10 +165,10 @@ module.exports = {
                     res.redirect('/');
                 });
             }
-        });
+        }).catch(next);
     },
 
-    replyPost: (req, res) => {
+    replyPost: (req, res, next) => {
         let id = req.params.id;
         if(!req.isAuthenticated()) {
             req.session.returnUrl = req.originalUrl;
@@ -201,7 +201,7 @@ module.exports = {
                         res.redirect(req.originalUrl);
                     }
                 });
-            });
+            }).catch(next);
         });
     }
 

@@ -53,7 +53,7 @@ module.exports = {
 
     },
 
-    details: (req, res) => {
+    details: (req, res, next) => {
         let id = req.params.id;
 
         Discussion.findById(id).populate('author').then(discussion => {
@@ -61,16 +61,16 @@ module.exports = {
                 if (!req.user) {
                     res.render('discussion/details', {discussion: discussion, replies: replies, isUserAuthorized: false});
                     return;
-               }
+                }
 
             let isUserAuthorized = req.user.isAdmin || req.user.isAuthorDiscussion(discussion);
             res.render('discussion/details', {user: req.user, discussion: discussion, replies: replies, isUserAuthorized: isUserAuthorized})
             });
-        });
+        }).catch(next);
 
     },
 
-    editGet: (req, res) => {
+    editGet: (req, res, next) => {
         let id = req.params.id;
 
         if(!req.isAuthenticated()) {
@@ -86,10 +86,10 @@ module.exports = {
                 return;
             }
             res.render('discussion/edit', discussion);
-        });
+        }).catch(next);
     },
 
-    editPost: (req, res) => {
+    editPost: (req, res, next) => {
         let id = req.params.id;
 
         if(!req.isAuthenticated()) {
@@ -112,11 +112,11 @@ module.exports = {
             Discussion.update({_id: id}, {$set: {title: discussionArgs.title, content: discussionArgs.content}})
             .then(updateStatus => {
                 res.redirect(`/discussion/details/${id}`);
-            });
+            }).catch(next);
         }
     },
 
-    deleteGet: (req, res) => {
+    deleteGet: (req, res, next) => {
         let id = req.params.id;
 
         if(!req.isAuthenticated()) {
@@ -133,10 +133,10 @@ module.exports = {
             }
 
             res.render('discussion/delete', discussion);
-        });
+        }).catch(next);
     },
 
-    deletePost: (req, res) => {
+    deletePost: (req, res, next) => {
         let id = req.params.id;
 
         if(!req.isAuthenticated()) {
@@ -163,10 +163,10 @@ module.exports = {
                     res.redirect('/');
                 });
             }
-        });
+        }).catch(next);
     },
 
-    replyPost: (req, res) => {
+    replyPost: (req, res, next) => {
         let id = req.params.id;
 
         if(!req.isAuthenticated()) {
@@ -200,7 +200,7 @@ module.exports = {
                         res.redirect(req.originalUrl);
                     }
                 });
-            });
+            }).catch(next);
         });
     }
 
