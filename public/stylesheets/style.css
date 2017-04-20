@@ -75,7 +75,7 @@ article{
     border: 2px solid white;
     border-radius: 100px;
 }
-h2, h3, p, em, h4{
+h2, h3, p, em{
     color: #3e7996;
 }
 
@@ -89,6 +89,7 @@ input.hidden {
     width: 100px;
     height: 100px;
     border:2px solid #03b1ce ;}
+
 .tital {
     font-size:16px; font-weight:500;
 }
@@ -96,6 +97,8 @@ input.hidden {
     border-bottom:1px #f8f8f8 solid;
     margin:5px 0  5px 0
 }
-
+h4{
+    color: #000000;
+}
 
 

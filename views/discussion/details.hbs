@@ -29,9 +29,10 @@
 
             {{#each replies}}
                 <article>
+                <p style="color: #000;">{{this.date}}</p>
                 <h4>{{this.content}}</h4>
                 <small class="author">{{this.author.fullName}}</small>
-                <p style="color: #000;">{{this.date}}</p>
+
                 </article>
             {{/each}}
                 </div>
