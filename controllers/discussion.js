@@ -9,6 +9,15 @@ module.exports = {
         });
     },
 
+    discussionSearch: (req, res) => {
+        let searchDiscussions = req.body.discussionsSearch;
+        
+        Discussion.find({title: new RegExp(searchDiscussions, "i")}).sort({date: -1}).populate('author').then(discussions => {
+            res.render('discussion/listAll', {discussions: discussions, searchDiscussions});
+        });
+
+    },
+
     createGet: (req, res) => {
         res.render('discussion/create');
     },

@@ -10,6 +10,15 @@ module.exports = {
         });
     },
 
+    newsSearch: (req, res) => {
+        let searchNews = req.body.newsSearch;
+        
+        News.find({title: new RegExp(searchNews, "i")}).sort({date: -1}).populate('author').then(news => {
+            res.render('news/listAll', {news: news, searchNews});
+        });
+
+    },
+
     createGet: (req, res) => {
         res.render('news/create');
     },

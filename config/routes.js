@@ -32,6 +32,7 @@ module.exports = (app) => {
 
     // Discussion routes:
     app.get('/discussion/listAll', discussionController.discussionsGet);
+    app.post('/discussion/listAll', discussionController.discussionSearch);
 
     app.get('/discussion/details/:id', discussionController.details);
     app.post('/discussion/details/:id', discussionController.replyPost);
@@ -47,6 +48,7 @@ module.exports = (app) => {
 
     // News routes:
     app.get('/news/listAll', newsController.newsGet);
+    app.post('/news/listAll', newsController.newsSearch);
 
     app.get('/news/details/:id', newsController.details);
     app.post('/news/details/:id', newsController.replyPost);
