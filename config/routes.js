@@ -59,4 +59,15 @@ module.exports = (app) => {
 
     app.get('/news/delete/:id', newsController.deleteGet);
     app.post('/news/delete/:id', newsController.deletePost);
+
+    //An error handling middleware
+    app.use(function (req, res, next) {
+        res.status(404)
+        res.render('error');
+    });
+
+    app.use(function (err, req, res, next) {
+        res.status(404)
+        res.render('error', { error: err.messege })
+    });
 };
