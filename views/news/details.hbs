@@ -28,9 +28,8 @@
 
                 {{#each replies}}
                 <div class="replyMain">
-                    <h4>{{this.content}}</h4>
-                    <small class="author">{{this.author.fullName}}</small>
-                    <p style="color: #000;">{{this.date}}</p>
+                    <h2 class="content">{{this.content}}</h2>
+                    <p class="author-cool">{{this.author.fullName}}: {{this.date}}</p>
                 </div>
                 {{/each}}
 
