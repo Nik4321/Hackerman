@@ -2,21 +2,16 @@
     <div class="well col-lg-9">
         <form class="form-horizontal" method="POST" action="/discussion/delete/{{id}}">
             <fieldset>
-                <legend>Delete Discussion</legend>
+                <h2 class="font-color-next">Delete Discussion</h2>
+                <br>
 
-                <div class="form-group">
-                    <label class="col-sm-4 control-label" for="discussionTitle">Discussion Title</label>
-                    <div class="col-sm-4 ">
+                <div class="col-sm-12">
+                    <h3 class="font-color-next">Discussion Title</h3>
                         <input type="text" class="form-control" id="discussionTitle" placeholder="Discussion Title" value="{{title}}" name="title" disabled >
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-4 control-label" for="discussionContent">Content</label>
-                    <div class="col-sm-6">
-                        <textarea class="form-control" id="discussionContent" rows="5" name="content" disabled>{{content}}</textarea>
-                    </div>
-                </div>
+                    <h3 class="font-color-next" for="discussionContent">Content</h3>
 
+                    <textarea class="form-control" id="discussionContent" rows="5" name="content" disabled>{{content}}</textarea>
+                </div>
                 <div class="form-group">
                     <div class="col-sm-4 col-sm-offset-4">
 
