@@ -6,9 +6,6 @@
                 <header>
                     <h2 class="discussion-title">{{discussion.title}}</h2>
                 </header>
-
-
-
                 <p class="content">
                     {{discussion.content}}
                 </p>
@@ -40,7 +37,7 @@
                     <form class="form-horizontal" method="POST" action="/discussion/details/{{discussion.id}}">
                         <fieldset>
                                 <h2 class="font-color-next" style="text-align:center">Reply</h2>
-                                <textarea class="form-control" id="replyContent" name="replyContent" rows="5"></textarea>
+                                <textarea maxlength="500" class="form-control" id="replyContent" name="replyContent" rows="5"></textarea>
                                 {{#if error}}
                                 <p style="color:red;">{{error}}</p>
                                 {{/if}}
