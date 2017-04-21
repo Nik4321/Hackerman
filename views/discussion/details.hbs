@@ -4,15 +4,16 @@
             <div class="sectionMain">
             <article>
                 <header>
-                    <h2>{{discussion.title}}</h2>
+                    <h2 class="discussion-title">{{discussion.title}}</h2>
                 </header>
 
-                <small class="author">
-                    {{discussion.author.fullName}}
-                </small>
 
-                <p>
+
+                <p class="content">
                     {{discussion.content}}
+                </p>
+                <p class="author-cool">
+                    {{discussion.author.fullName}}
                 </p>
 
                 <footer>
@@ -25,17 +26,17 @@
                     </div>
                 </footer>
             </article>
-                <div class="replyMain">
 
             {{#each replies}}
+            <div class="replyMain">
                 <article>
                 <p style="color: #000;">{{this.date}}</p>
                 <h4>{{this.content}}</h4>
                 <small class="author">{{this.author.fullName}}</small>
 
                 </article>
+            </div>
             {{/each}}
-                </div>
             <br>
                 <div class="replyMain">
                     <form class="form-horizontal" method="POST" action="/discussion/details/{{discussion.id}}">

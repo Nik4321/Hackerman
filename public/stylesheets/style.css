@@ -116,5 +116,21 @@ h4{
     text-align: center;
     color: #3e7996;
 }
+.discussion-title{
+    color: #3e7996;
+    text-align: center;
+    line-height: 0.1;
+}
+.content{
+    font-size: 22px;
+    margin-top: 35px;
+}
+.author-cool{
+    text-align: right;
+    font-size: 90%;
+    line-height: 2.4;
+    color: #2c3e50;
+}
+
 
 
