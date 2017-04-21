@@ -34,15 +34,13 @@
                 </div>
                 {{/each}}
 
-                <br>
                 <div class="replyMain">
                     <form class="form-horizontal" method="POST" action="/news/details/{{news.id}}">
                         <fieldset>
                                 <h2 class="font-color-next" style="text-align:center">Reply</h2>
-
                                 <textarea class="form-control" id="replyContent" name="replyContent" rows="5"></textarea>
                                 {{#if error}}
-                                <p style="color:red;">{{error}}</p>
+                                    <p style="color:red;">{{error}}</p>
                                 {{/if}}
                                 <br>
                                 <button type="submit" id="replyButton" class="btn btn-cool">Reply</button>
