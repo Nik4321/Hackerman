@@ -2,18 +2,16 @@
     <div class="well col-lg-9">
         <form class="form-horizontal" method="POST" action="/discussion/edit/{{id}}">
             <fieldset>
-                <legend>Edit Discussion</legend>
+                <div class="form-group col-md-12">
+                    <h2 class="font-color-next">Edit Discussion</h2>
+                    <br>
 
-                <div class="form-group">
-                    <label class="col-sm-4 control-label" for="discussionTitle">Article Title</label>
-                    <div class="col-sm-4 ">
+                    <div class="col-sm-12">
+                        <h3 class="font-color-next" for="discussionTitle">Article Title</h3>
+
                         <input type="text" class="form-control" id="discussionTitle" placeholder="Discussion Title" value="{{title}}" name="title" required >
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-4 control-label" for="discussionContent">Content</label>
-                    <div class="col-sm-6">
-                        <textarea class="form-control" id="discussionContent" rows="5" name="content">{{content}}</textarea>
+                        <h3 class="font-color-next" for="discussionContent">Content</h3>
+                        <textarea class="form-control" id="discussionContent" name="content" rows="5">{{content}}</textarea>
                     </div>
                 </div>
 
