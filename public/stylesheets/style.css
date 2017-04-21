@@ -59,10 +59,15 @@ article{
 }
 .replyMain {
     background-color: #789b9c;
-    padding: 40px;
+    padding: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     margin: 20px;
     border: 2px solid white;
-    border-radius: 100px;
+    border-radius: 35px;
+}
+#replyButton {
+    margin-bottom: 10px;
 }
 h2, h3, p, em{
     color: #3e7996;
