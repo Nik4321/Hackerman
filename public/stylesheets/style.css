@@ -19,6 +19,7 @@ body {
 }
 .div-cool {
     background-color: #3e7996;
+    box-sizing: content-box;
     padding: 15px;
     margin: 15px;
 }
@@ -143,6 +144,3 @@ h4{
     line-height: 2.4;
     color: #2c3e50;
 }
-
-
-
