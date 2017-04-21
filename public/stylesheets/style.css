@@ -53,14 +53,6 @@ article{
     border-bottom-style: dashed;
     border-radius: 4px;
 }
-.tactical_cont{
-    background: #22282f url(content-bg.png) repeat 0 0;
-    padding: 8px;
-    border: 1px solid #282f38;
-    border-top-width: 0;
-    border-bottom-width: 0;
-    border-radius: 1px;
-}
 .sectionMain {
     background-color: #3e7996;
     padding: 10px;
@@ -99,6 +91,23 @@ input.hidden {
 }
 h4{
     color: #000000;
+}
+
+.error-cool{
+    display: block;
+    margin: auto;
+}
+.error-text-cool{
+    display: block;
+    font-size: 28px;
+    text-align: center;
+    color: #3e7996;
+}
+.error-secondtext-cool{
+    display: block;
+    font-size: 18px;
+    text-align: center;
+    color: #3e7996;
 }
 
 
