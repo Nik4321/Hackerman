@@ -80,7 +80,7 @@ module.exports = {
                     returnUrl = req.session.returnUrl;
                     delete req.session.returnUrl;
                 }
-                res.redirect(returnUrl);
+                res.redirect('/');
             });
         });
     },
