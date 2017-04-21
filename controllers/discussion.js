@@ -12,7 +12,7 @@ module.exports = {
     discussionSearch: (req, res) => {
         let searchDiscussions = req.body.discussionsSearch;
         
-        Discussion.find({title: new RegExp(searchDiscussions, "i")}).sort({date: -1}).populate('author').then(discussions => {
+        Discussion.find({title: new RegExp(searchDiscussions, 'i')}).sort({date: -1}).populate('author').then(discussions => {
             res.render('discussion/listAll', {discussions: discussions, searchDiscussions});
         });
 
@@ -32,7 +32,7 @@ module.exports = {
             return;
         }
 
-        let errorMsg = "";
+        let errorMsg = '';
 
         if (!discussionArgs.title) {
             errorMsg = 'Invalid title!';
@@ -44,8 +44,8 @@ module.exports = {
         }
 
         // Fixing bug from editor.
-        if(discussionArgs.content === "<br>") {
-            discussionArgs.content = "";
+        if(discussionArgs.content === '<br>') {
+            discussionArgs.content = '';
         }
 
         discussionArgs.author = req.user.id;
@@ -73,7 +73,7 @@ module.exports = {
                 }
 
             let isUserAuthorized = req.user.isAdmin || req.user.isAuthorDiscussion(discussion);
-            res.render('discussion/details', {user: req.user, discussion: discussion, replies: replies, isUserAuthorized: isUserAuthorized})
+            res.render('discussion/details', {user: req.user, discussion: discussion, replies: replies, isUserAuthorized: isUserAuthorized});
             });
         }).catch(next);
 
@@ -119,7 +119,7 @@ module.exports = {
             res.render('discussion/edit', {error: errorMsg});
         } else {
             Discussion.update({_id: id}, {$set: {title: discussionArgs.title, content: discussionArgs.content}})
-            .then(updateStatus => {
+            .then( () => {
                 res.redirect(`/discussion/details/${id}`);
             }).catch(next);
         }

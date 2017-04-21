@@ -8,14 +8,14 @@ let discussionSchema = mongoose.Schema({
     title: {type: String, required: true},
     content: {type: String},
     author: {type: ObjectID, required: true, ref: 'User'},
-    date: {type: String, default: dateFormat(now, "isoDate")},
+    date: {type: String, default: dateFormat(now, 'isoDate')},
     reply: [{ type: ObjectID, ref: 'Replying' }]
 });
 
 let discussionReplyingSchema = mongoose.Schema({
     content: {type: String},
     author: {type: ObjectID, required: true, ref: 'User'},
-    date: {type: String, default: dateFormat(now, "isoDate")},
+    date: {type: String, default: dateFormat(now, 'isoDate')},
     idDiscussion: {type: ObjectID, ref: 'Discussion'}
 });
 

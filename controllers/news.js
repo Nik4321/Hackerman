@@ -13,7 +13,7 @@ module.exports = {
     newsSearch: (req, res) => {
         let searchNews = req.body.newsSearch;
         
-        News.find({title: new RegExp(searchNews, "i")}).sort({date: -1}).populate('author').then(news => {
+        News.find({title: new RegExp(searchNews, 'i')}).sort({date: -1}).populate('author').then(news => {
             res.render('news/listAll', {news: news, searchNews});
         });
 
@@ -33,7 +33,7 @@ module.exports = {
             return;
         }
 
-        let errorMsg = "";
+        let errorMsg = '';
 
         if (!newsArgs.title) {
             errorMsg = 'Invalid title!';
@@ -47,8 +47,8 @@ module.exports = {
         }
 
         // Fixing bug from editor.
-        if(newsArgs.content === "<br>") {
-            newsArgs.content = "";
+        if(newsArgs.content === '<br>') {
+            newsArgs.content = '';
         }
 
         newsArgs.author = req.user.id;
@@ -75,7 +75,7 @@ module.exports = {
                     return;
                }
                let isUserAuthorized = req.user.isAdmin;
-               res.render('news/details', {news: news, replies: replies, isUserAuthorized: isUserAuthorized})         
+               res.render('news/details', {news: news, replies: replies, isUserAuthorized: isUserAuthorized});
             });
         }).catch(next);
 
@@ -92,7 +92,7 @@ module.exports = {
         }        
 
         News.findById(id).then(news => {
-            if (!req.user.isAdmin && !req.user.isAuthorDiscussion(discussion)) {
+            if (!req.user.isAdmin && !req.user.isAuthorNews(news)) {
                 res.redirect('/');
                 return;
             }            
@@ -121,7 +121,7 @@ module.exports = {
             res.render('news/edit', {error: errorMsg});
         } else {
             News.update({_id: id}, {$set: {title: newsArgs.title, content: newsArgs.content}})
-            .then(updateStatus => {
+            .then( () => {
                 res.redirect(`/news/details/${id}`);
             }).catch(next);
         }
@@ -138,7 +138,7 @@ module.exports = {
         }        
 
         News.findById(id).then(news => {
-            if (!req.user.isAdmin && !req.user.isAuthorDiscussion(discussion)) {
+            if (!req.user.isAdmin && !req.user.isAuthorNews(news)) {
                 res.redirect('/');
                 return;
             }
@@ -213,5 +213,4 @@ module.exports = {
             }).catch(next);
         });
     }
-
 };

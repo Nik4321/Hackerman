@@ -20,14 +20,14 @@ module.exports = {
             } else if (user) {
                 errorMsg = 'User with the same email exists!';
             } else if (registerArgs.password !== registerArgs.repeatedPassword) {
-                errorMsg = 'Passwords do not match!'
+                errorMsg = 'Passwords do not match!';
             } else if (registerArgs.password.length < 6) {
                 errorMsg = 'Password must be at least 6 characters';
             }
 
             if (errorMsg) {
                 registerArgs.error = errorMsg;
-                res.render('user/register', registerArgs)
+                res.render('user/register', registerArgs);
             } else {
                 let salt = encryption.generateSalt();
                 let passwordHash = encryption.hashPassword(registerArgs.password, salt);
@@ -47,11 +47,11 @@ module.exports = {
                             return;
                         }
 
-                        res.redirect(`/user/details/${user._id}`)
-                    })
+                        res.redirect(`/user/details/${user._id}`);
+                    });
                 });
             }
-        })
+        });
     },
 
     loginGet: (req, res) => {
@@ -81,8 +81,8 @@ module.exports = {
                     delete req.session.returnUrl;
                 }
                 res.redirect(returnUrl);
-            })
-        })
+            });
+        });
     },
 
     logout: (req, res) => {
@@ -102,7 +102,7 @@ module.exports = {
         }
 
         User.findById(id).populate().then(user => {
-            res.render('user/details', user)
+            res.render('user/details', user);
         }).catch(next);
     },
 
@@ -156,7 +156,7 @@ module.exports = {
                 res.render('user/adminSettings', adminArgs);
             } else {
                 User.update({email: adminArgs.emailAdminAdd}, {$set: {isAdmin: true}})
-                .then(updateStatus => {
+                .then( () => {
                     res.render('user/adminSettings', {successMsgForAdminAdd: 'User is now Admin!'});
                 });
             }
@@ -183,16 +183,16 @@ module.exports = {
             
             let errorMsg = '';
             if (!user) {
-                errorMsg = "User does not exist!";
+                errorMsg = 'User does not exist!';
             } else if (user.isAdmin) {
-                errorMsg = "Cannot delete other Admins!"
+                errorMsg = 'Cannot delete other Admins!';
             }
 
             if (errorMsg) {
                 adminArgs.errorMsgForUserDelete = errorMsg;
                 res.render('user/adminSettings', adminArgs);
             } else {
-                User.findOneAndRemove({email: adminArgs.emailUserDelete}).then(updateStatus => {
+                User.findOneAndRemove({email: adminArgs.emailUserDelete}).then( () => {
                     res.render('user/adminSettings', {successMsgForUserDelete: 'User was deleted!'});
                 });
             }
@@ -219,18 +219,18 @@ module.exports = {
             let errorMsg = '';
             let masterPass = 'ShadyMaster';
             if (!user) {
-                errorMsg = "User does not exist!";
+                errorMsg = 'User does not exist!';
             } else if(!user.isAdmin) {
-                errorMsg = "User is not admin!";
+                errorMsg = 'User is not admin!';
             } else if (req.body.masterPassword !== masterPass) {
-                errorMsg = "Master Password is incorrect"
+                errorMsg = 'Master Password is incorrect';
             }
 
             if (errorMsg) {
                 adminArgs.errorMsgForAdminDelete = errorMsg;
                 res.render('user/adminSettings', adminArgs);
             } else {
-                User.findOneAndRemove({email: adminArgs.emailAdminDelete}).then(updateStatus => {
+                User.findOneAndRemove({email: adminArgs.emailAdminDelete}).then( () => {
                     res.render('user/adminSettings', {successMsgForAdminDelete: 'Admin was deleted!'});
                 });
             }
@@ -246,7 +246,7 @@ module.exports = {
         }        
 
         Discussion.find({author: req.user._id}).populate('author').then(discussions => {
-            res.render('user/userDiscussions', {discussions: discussions})
+            res.render('user/userDiscussions', {discussions: discussions});
         });
     },
 
@@ -259,7 +259,7 @@ module.exports = {
         }
 
         News.find({author: req.user._id}).populate('author').then(news => {
-            res.render('user/userNews', {news: news})
+            res.render('user/userNews', {news: news});
         });
     },
 
@@ -274,7 +274,7 @@ module.exports = {
         }
 
         User.findById(id).populate().then(user => {
-            res.render('user/editProfile', user)
+            res.render('user/editProfile', user);
         });
     },
 
@@ -289,10 +289,6 @@ module.exports = {
         }
 
         let editProfileArgs = req.body;
-
-        let errorMsg = '';
-        let regexForEmail = new RegExp (/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
-        
             
         User.update({_id: id}, {$set: {
             fullName: editProfileArgs.fullName,
@@ -300,10 +296,8 @@ module.exports = {
             birthPlace: editProfileArgs.birthPlace,
             currentAddress: editProfileArgs.currentAddress,
             nationality: editProfileArgs.nationality
-        }}).then(updateStatus => {
+        }}).then( () => {
             res.redirect(`/user/details/${id}`);
         });
-    
     },
-
 };
