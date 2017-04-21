@@ -7,7 +7,7 @@
 
                 <div class="col-sm-12">
                     <h3 class="font-color-next">Discussion Title</h3>
-                        <input type="text" class="form-control" id="discussionTitle" placeholder="Discussion Title" value="{{title}}" name="title" disabled >
+                    <input type="text" class="form-control" id="discussionTitle" placeholder="Discussion Title" value="{{title}}" name="title" disabled >
                     <h3 class="font-color-next" for="discussionContent">Content</h3>
 
                     <textarea class="form-control" id="discussionContent" rows="5" name="content" disabled>{{content}}</textarea>
@@ -15,8 +15,7 @@
                 <div class="form-group">
                     <div class="col-sm-4 col-sm-offset-4">
 
-                        <a href="/" class="btn btn-default">Cancel</a>
-
+                        <a href="/discussion/details/{{id}}" class="btn btn-default">Cancel</a>
                         <button type="submit" class="btn btn-danger">Delete</button>
                     </div>
                 </div>

@@ -25,15 +25,15 @@
                 </footer>
             </article>
 
-            <div class="replyMain">
             {{#each replies}}
+            <div class="replyMain">
                 <article>
                 <h4>{{this.content}}</h4>
                 <small class="author">{{this.author.fullName}}</small>
                 <p style="color: #000;">{{this.date}}</p>
                 </article>
-            {{/each}}
             </div>
+            {{/each}}
             
             <br>
             <div class="replyMain">

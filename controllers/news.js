@@ -178,7 +178,7 @@ module.exports = {
                 let count = 1;
                 author.news.splice(index, count);
                 author.save().then((user) => {
-                    res.redirect('/');
+                    res.redirect('/news/listAll');
                 });
             }
         }).catch(next);
