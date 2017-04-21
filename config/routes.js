@@ -2,10 +2,13 @@ const userController = require('./../controllers/user');
 const homeController = require('./../controllers/home');
 const discussionController = require('./../controllers/discussion');
 const newsController = require('./../controllers/news');
+const contactsController = require('./../controllers/contacts');
 
 module.exports = (app) => {
 
     app.get('/', homeController.index);
+
+    app.get('/contacts/viewContacts', contactsController.contactsGet);
 
     // User routes:
     app.get('/user/register', userController.registerGet);

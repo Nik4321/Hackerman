@@ -17,6 +17,16 @@ body {
     background-color: #e4f8e3;
     border-color: #98b5bd;
 }
+.div-cool {
+    background-color: #3e7996;
+    padding: 15px;
+    margin: 15px;
+}
+.div-cool:hover {
+    color: #3e7996;
+    background-color: #e4f8e3;
+    border-color: #98b5bd;
+ }
 .font-color {
     color: #e4f8e3;
 }
