@@ -8,17 +8,8 @@
 
                     <div class="col-sm-12">
                         <h3 class="font-color-next">Title</h3>
-
-                    </div>
-                <div class="form-group">
-                    <label class="col-sm-4 control-label" for="NewsTitle">Title</label>
-                    <div class="col-sm-4 ">
                         <input type="text" class="form-control" id="NewsTitle" placeholder="News Title" value="{{title}}" name="title" required >
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-4 control-label" for="newsContent">Content</label>
-                    <div class="col-sm-6">
+                        <h3 class="font-color-next">Content</h3>
                         <textarea class="form-control" id="newsContent" rows="5" name="content">{{content}}</textarea>
                     </div>
                 </div>
@@ -26,7 +17,6 @@
                 <div class="form-group">
                     <div class="col-sm-4 col-sm-offset-4">
                         <a href="/" class="btn btn-default">Cancel</a>
-
                         <button type="submit" href="/news/edit/{{id}}" class="btn btn-cool">Edit</button>
                     </div>
                 </div>

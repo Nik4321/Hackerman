@@ -176,7 +176,7 @@ module.exports = {
                 let count = 1;
                 author.discussions.splice(index, count);
                 author.save().then((user) => {
-                    res.redirect('/');
+                    res.redirect('/discussion/listAll');
                 });
             }
         }).catch(next);
