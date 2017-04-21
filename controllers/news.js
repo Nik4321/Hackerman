@@ -20,6 +20,13 @@ module.exports = {
     },
 
     createGet: (req, res) => {
+        if(!req.isAuthenticated()) {
+            req.session.returnUrl = req.originalUrl;
+
+            res.render('user/login', {error: 'Must be logged in to do that'});
+            return;
+        }
+
         res.render('news/create');
     },
 
