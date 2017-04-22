@@ -33,7 +33,9 @@
                 <ul class="nav navbar-nav navbar-right">
                     {{#if user}}
                     <li><a href="/user/details/{{user.id}}" class="font-color"><i class="fa fa-user-circle" aria-hidden="true"></i> {{user.fullName}}</a></li>
-                    <li><a href="/news/create" class="font-color"><i class="fa fa-plus-square" aria-hidden="true"></i> PUBLISH NEWS</a></li>
+                    {{#if user.isAdmin}}
+                        <li><a href="/news/create" class="font-color"><i class="fa fa-plus-square" aria-hidden="true"></i> PUBLISH NEWS</a></li>
+                    {{/if}}
                     <li><a href="/discussion/create" class="font-color"><i class="fa fa-plus-square" aria-hidden="true"></i> NEW DISCUSSION</a></li>
                     <li><a href="/user/logout" class="font-color"><i class="fa fa-sign-out" aria-hidden="true"></i> LOGOUT</a></li>
                     {{/if}}
