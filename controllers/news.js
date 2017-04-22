@@ -1,6 +1,6 @@
 const News = require('mongoose').model('News');
 const ReplyingNews = require('mongoose').model('ReplyingNews');
-
+const RatingNews = require('mongoose').model('RatingsNews');
 
 module.exports = {
 
@@ -12,7 +12,7 @@ module.exports = {
 
     newsSearch: (req, res) => {
         let searchNews = req.body.newsSearch;
-        
+
         News.find({title: new RegExp(searchNews, 'i')}).sort({date: -1}).populate('author').then(news => {
             res.render('news/listAll', {news: news, searchNews});
         });
@@ -249,5 +249,32 @@ module.exports = {
                 });
             }).catch(next);
         });
-    }
+    },
+
+    votesGet: (req, res) => {
+        let id = req.params.id;
+        if(!req.isAuthenticated()) {
+            req.session.returnUrl = req.originalUrl;
+
+            res.render('user/login', {error: 'Must be logged in to do that'});
+            return;
+        }
+
+        let voteArgs = req.body;
+        let userId = req.user.id;
+
+        let rating = {
+            rating: voteArgs.rating,
+            author: userId,
+            idNews: id
+
+        };
+
+        RatingNews.create(rating).then(rating => {
+            News.findById({_id: id}).then(news => {
+                news.rating.push(rating);
+
+            });
+        });
+    },
 };
