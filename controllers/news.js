@@ -27,6 +27,11 @@ module.exports = {
             return;
         }
 
+        if (!req.user.isAdmin) {
+            res.render('home/index', {error: 'You have to be an Admin to have access to the  News'});
+            return;
+        }
+
         res.render('news/create');
     },
 
@@ -37,6 +42,11 @@ module.exports = {
             req.session.returnUrl = req.originalUrl;
 
             res.render('user/login', {error: 'Must be logged in to do that'});
+            return;
+        }
+
+        if (!req.user.isAdmin) {
+            res.render('home/index', {error: 'You have to be an Admin to have access to the  News'});
             return;
         }
 
@@ -96,7 +106,12 @@ module.exports = {
 
             res.render('user/login', {error: 'Must be logged in to do that'});
             return;
-        }        
+        }
+
+        if (!req.user.isAdmin) {
+            res.render('home/index', {error: 'You have to be an Admin to have access to the  News'});
+            return;
+        }
 
         News.findById(id).then(news => {
             if (!req.user.isAdmin && !req.user.isAuthorNews(news)) {
@@ -114,6 +129,11 @@ module.exports = {
             req.session.returnUrl = req.originalUrl;
 
             res.render('user/login', {error: 'Must be logged in to do that'});
+            return;
+        }
+
+        if (!req.user.isAdmin) {
+            res.render('home/index', {error: 'You have to be an Admin to have access to the  News'});
             return;
         }
 
@@ -142,6 +162,11 @@ module.exports = {
 
             res.render('user/login', {error: 'Must be logged in to do that'});
             return;
+        }
+
+        if (!req.user.isAdmin) {
+            res.render('home/index', {error: 'You have to be an Admin to have access to the  News'});
+            return;
         }        
 
         News.findById(id).then(news => {
@@ -161,6 +186,11 @@ module.exports = {
             req.session.returnUrl = req.originalUrl;
 
             res.render('user/login', {error: 'Must be logged in to do that'});
+            return;
+        }
+
+        if (!req.user.isAdmin) {
+            res.render('home/index', {error: 'You have to be an Admin to have access to the  News'});
             return;
         }
 
