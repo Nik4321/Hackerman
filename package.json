@@ -1,9 +1,15 @@
 {
-  "name": "Hackerman-forum",
-  "version": "0.0.0",
+  "name": "hackerman-forum",
+  "version": "1.0.0",
+  "description": "A small forum web app",
   "private": true,
+  "author": "ShadyGuyz",
+  "main": "app.js",
   "scripts": {
     "start": "node ./bin/www"
+  },
+  "engines": {
+    "node": "6.10.0"
   },
   "dependencies": {
     "body-parser": "~1.16.0",
@@ -23,5 +29,9 @@
   },
   "devDependencies": {
     "eslint": "^3.19.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Nik4321/Hackerman"
   }
 }
