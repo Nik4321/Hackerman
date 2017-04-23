@@ -331,7 +331,7 @@ module.exports = {
                 return;
             }
 
-            User.findOneAndRemove({_id: req.user_id}).then( () => {
+            User.findOneAndRemove({_id: req.user._id}).then( () => {
                 res.redirect('/');
             });
         });
