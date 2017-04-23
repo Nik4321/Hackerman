@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const passport = require('passport');
 const favicon = require('serve-favicon');
+const fileUpload = require('express-fileupload');
 
 module.exports = (app, config) => {
     // Favicon setup.
@@ -27,6 +28,9 @@ module.exports = (app, config) => {
     // For user validation we will use passport module.
     app.use(passport.initialize());
     app.use(passport.session());
+
+    // Use express-fileUpload to handle multipart data
+    app.use(fileUpload());
 
     app.use((req, res, next) => {
         if(req.user){

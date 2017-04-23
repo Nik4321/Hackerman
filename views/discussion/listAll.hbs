@@ -12,11 +12,15 @@
                 </div>
             </form>
             <br>
-            <div class="list-group">
-                {{#each discussions}}
-                    <a href="/discussion/details/{{this.id}}" class="list-group-item-cool" style="color: #3a5875">{{this.title}}</a>
-                {{/each}}
-            </div>
+                
+                {{#if discussions}}
+                    <div class="list-group">
+                    {{#each discussions}}
+                        <a href="/discussion/details/{{this.id}}" class="list-group-item-cool" style="color: #3a5875">{{this.title}}</a>
+                    {{/each}}
+                    </div>
+                {{/if}}
+            
         </div>
     </div>
 </div>

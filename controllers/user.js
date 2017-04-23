@@ -287,15 +287,26 @@ module.exports = {
             res.render('user/login', {error: 'Must be logged in to do that'});
             return;
         }
-
+        let profileImage = req.files.image;
         let editProfileArgs = req.body;
-            
+        let userImagePath;
+        if (profileImage) {
+            userImagePath = `./public/images/UserPic/${id}`;
+
+            profileImage.mv(`./public/images/UserPic/${id}`, err => {
+                if (err) {
+                    console.log(err.message);
+                }
+            });
+        }
+
         User.update({_id: id}, {$set: {
             fullName: editProfileArgs.fullName,
             birthDate: editProfileArgs.birthDate,
             birthPlace: editProfileArgs.birthPlace,
             currentAddress: editProfileArgs.currentAddress,
-            nationality: editProfileArgs.nationality
+            nationality: editProfileArgs.nationality,
+            imagePath: userImagePath
         }}).then( () => {
             res.redirect(`/user/details/${id}`);
         });

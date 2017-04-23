@@ -1,7 +1,7 @@
 <div class="container body-content span=8 offset=2">
     <div class="well col-lg-9">
         <a class="btn btn-default btn-xs pull-right" href="/user/details/{{user.id}}">Back &raquo;</a>
-        <form class="form-horizontal" method="POST" action="/user/editProfile/{{user.id}}">
+        <form class="form-horizontal" enctype="multipart/form-data" method="POST" action="/user/editProfile/{{user.id}}">
             <fieldset>
                 <legend>Edit User Profile</legend>
 
@@ -21,15 +21,22 @@
 
                 <div class="form-group">
                     <label class="col-sm-4 control-label">Place of Birth</label>
-                    <div class="col-sm-4 ">
+                    <div class="col-sm-4">
                         <input max="50" type="text" class="form-control" id="birthPlace" value="{{user.birthPlace}}" name="birthPlace">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-sm-4 control-label">Current Address</label>
-                    <div class="col-sm-4 ">
+                    <div class="col-sm-4">
                         <input max="50" type="text" class="form-control" id="currentAddress" value="{{user.currentAddress}}" name="currentAddress">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">Profile Picture</label>
+                    <div class="col-sm-4">
+                        <input max="50" type="file" class="form-control" id="image" name="image">
                     </div>
                 </div>
 

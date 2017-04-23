@@ -13,11 +13,12 @@ let userSchema = mongoose.Schema(
         news: {type: [mongoose.Schema.Types.ObjectId], default: []},
         salt: {type: String, required: true},
         isAdmin: {type: Boolean, default: false},
-        joinDate: {type: String, default: dateFormat(now, "isoDate")},
+        joinDate: {type: String, default: dateFormat(now, 'isoDate')},
         birthDate: {type: String},
         birthPlace: {type: String},
         currentAddress: {type: String},
-        nationality: {type: String}
+        nationality: {type: String},
+        imagePath: {type: String}
     }
 );
 
@@ -46,7 +47,7 @@ userSchema.method ({
 
       let isAuthorNews = news.author.equals(this.id);
 
-      return isAuthornews;
+      return isAuthorNews;
    },
 
    userIsAdmin: function (isAdmin) {
@@ -73,7 +74,7 @@ module.exports.seedAdmin = () => {
                news: [],
                salt: salt,
                isAdmin: true,
-               joinDate: dateFormat(now, "isoDate"),
+               joinDate: dateFormat(now, 'isoDate'),
                birthPlace: 'Sofia',
                currentAddress: 'Shady',
                nationality: 'Bulgarian'

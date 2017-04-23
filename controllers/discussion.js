@@ -79,8 +79,8 @@ module.exports = {
                     return;
                 }
 
-            let isUserAuthorized = req.user.isAdmin || req.user.isAuthorDiscussion(discussion);
-            res.render('discussion/details', {user: req.user, discussion: discussion, replies: replies, isUserAuthorized: isUserAuthorized});
+                let isUserAuthorized = req.user.isAdmin || req.user.isAuthorDiscussion(discussion);
+                res.render('discussion/details', {discussion: discussion, replies: replies, isUserAuthorized: isUserAuthorized});
             });
         }).catch(next);
 
