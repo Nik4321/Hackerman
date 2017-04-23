@@ -9,7 +9,7 @@ let discussionSchema = mongoose.Schema({
     content: {type: String},
     author: {type: ObjectID, required: true, ref: 'User'},
     date: {type: String, default: dateFormat(now, 'isoDate')},
-    reply: [{ type: ObjectID, ref: 'Replying' }]
+    reply: [{ type: ObjectID, ref: 'ReplyingDiscussions' }]
 });
 
 let discussionReplyingSchema = mongoose.Schema({
@@ -20,7 +20,7 @@ let discussionReplyingSchema = mongoose.Schema({
 });
 
 const Discussion = mongoose.model('Discussion', discussionSchema);
-const Replying = mongoose.model('Replying', discussionReplyingSchema);
+const ReplyingDiscussions = mongoose.model('ReplyingDiscussions', discussionReplyingSchema);
 
 module.exports = Discussion;
-module.exports = Replying;
+module.exports = ReplyingDiscussions;

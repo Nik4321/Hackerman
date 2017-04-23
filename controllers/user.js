@@ -321,7 +321,7 @@ module.exports = {
         }
 
         if (deleteArgs.password !== deleteArgs.repeatedPassword) {
-            res.render('user/editProfile', {errorAccountDelete: 'Passwords do not Match'});
+            res.render('user/editProfile', {errorAccountDelete: 'Passwords do not Match!'});
             return;
         }
 

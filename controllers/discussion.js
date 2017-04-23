@@ -1,5 +1,5 @@
 const Discussion = require('mongoose').model('Discussion');
-const Replying = require('mongoose').model('Replying');
+const ReplyingDiscussions = require('mongoose').model('ReplyingDiscussions');
 
 module.exports = {
 
@@ -73,7 +73,7 @@ module.exports = {
         let id = req.params.id;
 
         Discussion.findById(id).populate('author').then(discussion => {
-            Replying.find({idDiscussion: discussion._id}).populate('author').then(replies => {
+            ReplyingDiscussions.find({idDiscussion: discussion._id}).populate('author').then(replies => {
                 if (!req.user) {
                     res.render('discussion/details', {discussion: discussion, replies: replies, isUserAuthorized: false});
                     return;
@@ -206,7 +206,7 @@ module.exports = {
           idDiscussion: id
         };
 
-        Replying.create(reply).then(reply => {
+        ReplyingDiscussions.create(reply).then(reply => {
             Discussion.findById({_id: id}).then(discussion => {
                 discussion.reply.push(reply);
                 discussion.save(err => {
