@@ -6,6 +6,7 @@ const session = require('express-session');
 const passport = require('passport');
 const favicon = require('serve-favicon');
 const fileUpload = require('express-fileupload');
+const morgan = require('morgan');
 
 module.exports = (app, config) => {
     // Favicon setup.
@@ -18,6 +19,9 @@ module.exports = (app, config) => {
     // This set up which is the parser for the request's data.
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({extended: true}));
+
+    // Morgan Setup
+    app.use(morgan('dev'));
 
     // We will use cookies.
     app.use(cookieParser());
