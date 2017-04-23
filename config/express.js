@@ -9,7 +9,7 @@ const fileUpload = require('express-fileupload');
 
 module.exports = (app, config) => {
     // Favicon setup.
-    app.use(favicon(path.join(config.rootFolder, 'public/favicon', 'favicon.ico')))
+    app.use(favicon(path.join(config.rootFolder, 'public/favicon', 'favicon.ico')));
 
     // View engine setup.
     app.set('views', path.join(config.rootFolder, '/views'));

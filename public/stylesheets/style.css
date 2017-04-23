@@ -8,6 +8,9 @@ body {
 .navbar-cool {
     background-color: #3e7996;
 }
+.navbar-cool .navbar-toggle .icon-bar {
+    background-color: #e4f8e3
+}
 .btn-cool {
     background-color: #3e7996;
     color: #e4f8e3;
@@ -99,7 +102,7 @@ article{
     border-radius: 1px;
 }
 .replyMain {
-    background-color: #789b9c;
+    background-color: #80b7bc;
     padding: 20px;
     padding-top: 5px;
     padding-bottom: 5px;

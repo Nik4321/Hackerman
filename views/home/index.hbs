@@ -6,7 +6,16 @@
     <h1 class="text-center font-cool">Hackerman Forum</h1>
       <br>
       <p>The Hackerman Forum is a place where all nerds and plebs talk about random stuff in their everyday routine. If you are looking for a place on the web to waste your time, look no further!</p>
-      <p>Everyone is welcome here!</p>
+      <br>
+      {{#if user}}
+          <h3 style="color: #98101e">
+              Why are you still here?!
+          </h3>
+          <h3>
+              Go check the <a style="color: #4eb184" href="/news/listAll">News</a>
+              or take part in the <a style="color: #4eb184" href="/discussion/listAll">Discussions</a>!
+          </h3>
+      {{/if}}
       {{#unless user}}
       <h3 style="padding-left: 27%">
           What are you wating for?! <a style="color: #4eb184;" href="/user/register">Sign up</a> now!
