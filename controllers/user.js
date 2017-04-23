@@ -289,9 +289,9 @@ module.exports = {
         let userImagePath;
 
         if (profileImage) {
-            userImagePath = `./public/images/UserPic/${req.user._id}`;
+            userImagePath = `./images/UserPic/${req.user._id}`;
 
-            profileImage.mv(`./public/images/UserPic/${req.user._id}`, err => {
+            profileImage.mv(`./images/UserPic/${req.user._id}`, err => {
                 if (err) {
                     console.log(err.message);
                 }
