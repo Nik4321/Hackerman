@@ -1,20 +1,20 @@
 <div class="container body-content span=8 offset=2">
     <div class="well col-lg-9">
         <a class="btn btn-default btn-xs pull-right" href="/user/details/{{user.id}}">Back &raquo;</a>
-        <form class="form-horizontal" enctype="multipart/form-data" method="POST" action="/user/editProfile/{{user.id}}">
+        <form class="form-horizontal" enctype="multipart/form-data" method="POST" action="/user/editProfile">
             <fieldset>
                 <legend>Edit User Profile</legend>
 
                 <div class="form-group">
                     <label class="col-sm-4 control-label">Full Name</label>
-                    <div class="col-sm-4 ">
+                    <div class="col-sm-4">
                         <input maxlength="50" type="text" class="form-control" id="fullName" value="{{user.fullName}}" name="fullName">
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-sm-4 control-label">Date of Birth</label>
-                    <div class="col-sm-4 ">
+                    <div class="col-sm-4">
                         <input type="date" max="2017-01-01" min="1930-01-01" class="form-control" id="birthDate" value="{{user.birthDate}}" name="birthDate">
                     </div>
                 </div>
@@ -42,8 +42,7 @@
 
                 <div class="form-group">
                     <label class="col-sm-4 control-label">Nationality</label>
-                    <div class="col-sm-4 ">
-
+                    <div class="col-sm-4">
                         <select class="form-control" id="nationality" name="nationality">
                             <option value="">-- select one --</option>
                             <option value="Afghan">Afghan</option>
@@ -249,6 +248,37 @@
                         {{/if}}
                         <a class="btn btn-default" href="/user/details/{{user.id}}">Cancel</a>
                         <button type="submit" class="btn btn-cool">Update Profile</button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <div class="well col-lg-9">
+        <form class="form-horizontal" method="POST" action="/user/editProfile/delete">
+            <fieldset>
+                <legend>Delete User Account</legend>
+                
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">Password</label>
+                    <div class="col-sm-4">
+                        <input type="password" class="form-control" id="inputPassword" placeholder="Password" name="password">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-4 control-label">Confirm Password</label>
+                    <div class="col-sm-4">
+                        <input type="password" class="form-control" id="inputPassword" placeholder="Confirm Password" required name="repeatedPassword">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-4 col-sm-offset-4">
+                        {{#if errorAccountDelete}}
+                        <p style="color:red;">{{errorAccountDelete}}</p>
+                        {{/if}}
+                        <a class="btn btn-default" href="/user/details/{{user.id}}">Cancel</a>
+                        <button type="submit" class="btn btn-danger">Delete Account</button>
                     </div>
                 </div>
             </fieldset>

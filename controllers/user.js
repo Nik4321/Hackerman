@@ -264,8 +264,6 @@ module.exports = {
     },
 
     editProfileGet: (req, res) => {
-        let id = req.params.id;
-
         if(!req.isAuthenticated()) {
             req.session.returnUrl = req.originalUrl;
 
@@ -273,34 +271,34 @@ module.exports = {
             return;
         }
 
-        User.findById(id).populate().then(user => {
+        User.findById(req.user._id).populate().then(user => {
             res.render('user/editProfile', user);
         });
     },
 
     editProfilePost: (req, res) => {
-        let id = req.params.id;
-
         if(!req.isAuthenticated()) {
             req.session.returnUrl = req.originalUrl;
 
             res.render('user/login', {error: 'Must be logged in to do that'});
             return;
         }
+
         let profileImage = req.files.image;
         let editProfileArgs = req.body;
         let userImagePath;
-        if (profileImage) {
-            userImagePath = `./public/images/UserPic/${id}`;
 
-            profileImage.mv(`./public/images/UserPic/${id}`, err => {
+        if (profileImage) {
+            userImagePath = `./public/images/UserPic/${req.user._id}`;
+
+            profileImage.mv(`./public/images/UserPic/${req.user._id}`, err => {
                 if (err) {
                     console.log(err.message);
                 }
             });
         }
 
-        User.update({_id: id}, {$set: {
+        User.update({_id: req.user._id}, {$set: {
             fullName: editProfileArgs.fullName,
             birthDate: editProfileArgs.birthDate,
             birthPlace: editProfileArgs.birthPlace,
@@ -308,7 +306,34 @@ module.exports = {
             nationality: editProfileArgs.nationality,
             imagePath: userImagePath
         }}).then( () => {
-            res.redirect(`/user/details/${id}`);
+            res.redirect(`/user/details/${req.user._id}`);
+        });
+    },
+
+    accountDelete: (req, res) => {
+        let deleteArgs = req.body;
+        
+        if(!req.isAuthenticated()) {
+            req.session.returnUrl = req.originalUrl;
+
+            res.render('user/login', {error: 'Must be logged in to do that'});
+            return;
+        }
+
+        if (deleteArgs.password !== deleteArgs.repeatedPassword) {
+            res.render('user/editProfile', {errorAccountDelete: 'Passwords do not Match'});
+            return;
+        }
+
+        User.findOne({_id: req.user._id}).then(user => {
+            if (!user.authenticate(deleteArgs.password)) {
+                res.render('user/editProfile', {errorAccountDelete: 'Password is invalid!'});
+                return;
+            }
+
+            User.findOneAndRemove({_id: req.user_id}).then( () => {
+                res.redirect('/');
+            });
         });
     },
 };

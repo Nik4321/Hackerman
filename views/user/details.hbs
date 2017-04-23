@@ -4,20 +4,18 @@
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="pull-right">{{user.email}}</h4>
-                    <h4 >User Profile</h4>
+                    <h4>User Profile</h4>
                 </div>
                 <div class="panel-body">
                     <div class="box box-info">
                         <div class="box-body">
                             <div class="col-sm-6">
-                                <div  align="center">
+                                <div align="center">
                                     {{#if user.imagePath}}
                                     <img alt="User Pic" src="/images/UserPic/{{user.id}}" id="profile-image1" class="img-circle img-responsive">
                                     {{else}}
                                      <img alt="User Pic" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" id="profile-image1" class="img-circle img-responsive">
                                     {{/if}}
-                                    <input id="profile-image-upload" class="hidden" type="file">
-                                    <div style="color:#999;">click here to change profile image</div>
                                 </div>
                                 <br>
                             </div>
@@ -39,7 +37,7 @@
                             </div>
 
                             <div class="btn-group btn-group-justified">
-                                <a href="/user/editProfile/{{user.id}}" class="btn btn-cool">User Settings</a>
+                                <a href="/user/editProfile" class="btn btn-cool">User Settings</a>
                                 <a href="/user/userDiscussions" class="btn btn-cool">User's Discussions</a>
                                 <a href="/user/userNews" class="btn btn-cool">User's News</a>
                                 {{#if user.isAdmin}}
