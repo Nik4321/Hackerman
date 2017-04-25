@@ -89,14 +89,28 @@ module.exports = {
         News.findById(id).populate('author').then(news => {
             ReplyingNews.find({idNews: news._id}).populate('author').then(replies => {
                 RatingNews.find({idNews: news._id}).then(ratings => {
+                    let count = 0;
+                    let max = 0;
+                    ratings.forEach(
+                        function avg (value) {
+                            count++;
+                            max += value.rating;
 
+                        }
+                    );
+
+                    console.log(count);
+                    console.log(max);
+                    let average = max / count;
+                    let fixedAverage = (Number(average.toFixed(2)));
+                    console.log(fixedAverage);
 
                     if (!req.user) {
-                        res.render('news/details', {news: news, replies: replies, isUserAuthorized: false});
+                        res.render('news/details', {rating: fixedAverage, news: news, replies: replies, isUserAuthorized: false});
                         return;
                    }
                    let isUserAuthorized = req.user.isAdmin;
-                   res.render('news/details', {news: news, replies: replies, isUserAuthorized: isUserAuthorized});
+                   res.render('news/details', {rating: fixedAverage, news: news, replies: replies, isUserAuthorized: isUserAuthorized});
                 });
             });
         }).catch(next);
@@ -256,7 +270,7 @@ module.exports = {
         });
     },
 
-    votesGet: (req, res) => {
+    votesPost: (req, res) => {
         let id = req.params.id;
 
         let user = req.author;
@@ -282,5 +296,6 @@ module.exports = {
                 news.rating.push(rating);
             });
         });
+        res.redirect(`/news/details/${id}`);
     },
 };
