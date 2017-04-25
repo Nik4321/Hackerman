@@ -28,8 +28,7 @@ module.exports = {
         }
 
         if (!req.user.isAdmin) {
-            res.render('home/index', {error: "You don't have permission to access!"});
-
+            res.render('home/index', {error: 'You have to be an Admin to have access to the  News'});
             return;
         }
 
@@ -88,16 +87,12 @@ module.exports = {
 
         News.findById(id).populate('author').then(news => {
             ReplyingNews.find({idNews: news._id}).populate('author').then(replies => {
-                RatingNews.find({idNews: news._id}).then(ratings => {
-
-
-                    if (!req.user) {
-                        res.render('news/details', {news: news, replies: replies, isUserAuthorized: false});
-                        return;
-                   }
-                   let isUserAuthorized = req.user.isAdmin;
-                   res.render('news/details', {news: news, replies: replies, isUserAuthorized: isUserAuthorized});
-                });
+                if (!req.user) {
+                    res.render('news/details', {news: news, replies: replies, isUserAuthorized: false});
+                    return;
+               }
+               let isUserAuthorized = req.user.isAdmin;
+               res.render('news/details', {news: news, replies: replies, isUserAuthorized: isUserAuthorized});
             });
         }).catch(next);
 
@@ -258,9 +253,6 @@ module.exports = {
 
     votesGet: (req, res) => {
         let id = req.params.id;
-
-        let user = req.author;
-        console.log(user);
         if(!req.isAuthenticated()) {
             req.session.returnUrl = req.originalUrl;
 
@@ -275,11 +267,13 @@ module.exports = {
             rating: voteArgs.rating,
             author: userId,
             idNews: id
+
         };
 
         RatingNews.create(rating).then(rating => {
             News.findById({_id: id}).then(news => {
                 news.rating.push(rating);
+
             });
         });
     },

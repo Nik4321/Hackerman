@@ -245,7 +245,7 @@ module.exports = {
             return;
         }        
 
-        Discussion.find({author: req.user._id}).sort({date: -1}).populate('author').then(discussions => {
+        Discussion.find({author: req.user._id}).populate('author').then(discussions => {
             res.render('user/userDiscussions', {discussions: discussions});
         });
     },
@@ -258,7 +258,7 @@ module.exports = {
             return;
         }
 
-        News.find({author: req.user._id}).sort({date: -1}).populate('author').then(news => {
+        News.find({author: req.user._id}).populate('author').then(news => {
             res.render('user/userNews', {news: news});
         });
     },
