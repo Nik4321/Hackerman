@@ -16,7 +16,7 @@
                 {{#if discussions}}
                     <div class="list-group">
                     {{#each discussions}}
-                        <a href="/discussion/details/{{this.id}}" class="list-group-item-cool" style="color: #3a5875">{{this.title}}</a>
+                        <a href="/discussion/details/{{this.id}}" class="list-group-item-cool" style="color: #3a5875">{{this.title}} <p class="pull-right">{{this.date}}</p></a>
                     {{/each}}
                     </div>
                 {{/if}}
