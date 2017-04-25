@@ -58,7 +58,6 @@ module.exports = (app) => {
     app.post('/news/details/:id', newsController.replyPost);
     app.post('/news/details/rating/:id', newsController.votesGet);
 
-    //app.post('/news/details/:id', newsController.votesGet);
 
     app.get('/news/create', newsController.createGet);
     app.post('/news/create', newsController.createPost);
