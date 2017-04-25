@@ -23,8 +23,7 @@ let newsReplyingSchema = mongoose.Schema({
 let newsVotesSchema = mongoose.Schema({
     rating: {type: Number, default: 0},
     author: {type: ObjectID, required: dateFormat(now, 'isoDate')},
-    idLikes: {type: ObjectID, ref: 'News'}
-
+    idNews: {type: ObjectID, ref: 'News'}
 });
 
 const News = mongoose.model('News', newsSchema, 'news');
