@@ -2,8 +2,7 @@ body {
     padding-top: 70px;
     background-size: cover;
     background-image: url(/images/1511.jpg);
-    background-size: cover;
-    background-color: #3e7996
+    background-repeat: no-repeat;
 }
 
 .navbar-cool {
