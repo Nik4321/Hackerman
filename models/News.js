@@ -9,7 +9,7 @@ let newsSchema = mongoose.Schema({
     content: {type: String},
     author: {type: ObjectID, required: true, ref: 'User'},
     date: {type: String, default: dateFormat(now, 'isoDate')},
-    reply: [{ type: ObjectID, ref: 'ReplyingNews' }],
+    reply: [{ type: ObjectID, ref: 'ReplyingNews'}],
     rating: [{type: ObjectID, ref: 'RatingsNews'}]
 });
 

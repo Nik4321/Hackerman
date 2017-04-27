@@ -294,11 +294,10 @@ module.exports = {
             author: userId,
             idNews: id
         };
-        
+    
         News.findById({_id: id}).then(news => {
-            RatingNews.findOne({author : req.user._id }).then( rating => {
-
-                if (rating) {
+            RatingNews.findOne({author : req.user._id }).then( ratingFound => {
+                if (ratingFound) {
                     // Remove this if you don't wanna update the rating
                     RatingNews.update({author: req.user._id}, {$set: {
                         rating: voteArgs.rating
@@ -307,12 +306,13 @@ module.exports = {
                         return;
                     });
                     // Actually don't touch it.
+                } else if (ratingFound === null) {
+                    console.log('here');
+                    RatingNews.create(rating).then(rating => {
+                        news.rating.push(rating);
+                        res.redirect(`/news/details/${id}`);
+                    });
                 }
-            }).catch(() => {
-                RatingNews.create(rating).then(rating => {
-                    news.rating.push(rating);
-                    res.redirect(`/news/details/${id}`);
-                });
             });
         });
     }
