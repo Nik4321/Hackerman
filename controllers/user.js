@@ -100,7 +100,7 @@ module.exports = {
             res.render('user/login', {error: 'Must be logged in to do that'});
             return;
         }
-
+        
         User.findById(id).populate().then(user => {
             res.render('user/details', user);
         }).catch(next);

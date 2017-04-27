@@ -69,14 +69,14 @@ module.exports = (app) => {
     app.post('/news/delete/:id', newsController.deletePost);
 
     //An error handling middleware
-    app.use(function (req, res) {
+    app.use((req, res) => {
         res.status(404);
         res.render('error');
     });
     
-    app.use(function (err, req, res, next) {
+    app.use((err, req, res, next) => {
         res.status(404);
         console.log(err.message);
-        res.render('error', { error: err.message });
+        res.render('error');
     });
 };

@@ -9,8 +9,6 @@ module.exports = (config) => {
             console.log(error);
             return;
         }
-
-        console.log('MongoDB ready!');
     });
 
     require('./../models/User').seedAdmin();
