@@ -98,12 +98,8 @@ module.exports = {
 
                         }
                     );
-
-                    console.log(count);
-                    console.log(max);
                     let average = max / count;
                     let fixedAverage = (Number(average.toFixed(2)));
-                    console.log(fixedAverage);
 
                     if (!req.user) {
                         res.render('news/details', {rating: fixedAverage, news: news, replies: replies, isUserAuthorized: false});
@@ -273,10 +269,8 @@ module.exports = {
     votesPost: (req, res) => {
         let id = req.params.id;
 
-        let user = req.author;
-        console.log(user);
         if(!req.isAuthenticated()) {
-            req.session.returnUrl = req.originalUrl;
+            req.session.returnUrl = `/news/details/${id}`;
 
             res.render('user/login', {error: 'Must be logged in to do that'});
             return;
@@ -291,11 +285,29 @@ module.exports = {
             idNews: id
         };
 
-        RatingNews.create(rating).then(rating => {
-            News.findById({_id: id}).then(news => {
-                news.rating.push(rating);
+        //  ).then( user => {
+        //     var isInRating = 
+        // });
+        
+        News.findById({_id: id}).then(news => {
+            RatingNews.findOne({author : req.user._id }).then( rating => {
+
+                if (rating) {
+                    // Remove this if you don't wanna update the rating
+                    RatingNews.update({author: req.user._id}, {$set: {
+                        rating: voteArgs.rating
+                    }}).then( () => {
+                        res.redirect(`/news/details/${id}`);
+                        return;
+                    });
+                    // Actually don't touch it.
+                }
+            }).catch(() => {
+                RatingNews.create(rating).then(rating => {
+                    news.rating.push(rating);
+                    res.redirect(`/news/details/${id}`);
+                });
             });
         });
-        res.redirect(`/news/details/${id}`);
     },
 };
