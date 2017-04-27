@@ -102,11 +102,21 @@ module.exports = {
                     let fixedAverage = (Number(average.toFixed(2)));
 
                     if (!req.user) {
-                        res.render('news/details', {rating: fixedAverage, news: news, replies: replies, isUserAuthorized: false});
+                        res.render('news/details', {
+                            rating: fixedAverage,
+                            news: news,
+                            replies: replies,
+                            isUserAuthorized: false
+                        });
                         return;
                    }
                    let isUserAuthorized = req.user.isAdmin;
-                   res.render('news/details', {rating: fixedAverage, news: news, replies: replies, isUserAuthorized: isUserAuthorized});
+                   res.render('news/details', {
+                       rating: fixedAverage,
+                       news: news,
+                       replies: replies,
+                       isUserAuthorized: isUserAuthorized
+                   });
                 });
             });
         }).catch(next);
@@ -284,10 +294,6 @@ module.exports = {
             author: userId,
             idNews: id
         };
-
-        //  ).then( user => {
-        //     var isInRating = 
-        // });
         
         News.findById({_id: id}).then(news => {
             RatingNews.findOne({author : req.user._id }).then( rating => {
@@ -309,5 +315,5 @@ module.exports = {
                 });
             });
         });
-    },
+    }
 };

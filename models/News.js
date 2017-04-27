@@ -32,4 +32,3 @@ const RatingNews = mongoose.model('RatingsNews', newsVotesSchema);
 
 module.exports = News;
 module.exports = ReplyingNews;
-module.exports = RatingNews;

@@ -40,6 +40,7 @@ module.exports = (app) => {
 
     app.get('/discussion/details/:id', discussionController.details);
     app.post('/discussion/details/:id', discussionController.replyPost);
+    app.post('/news/details/rating/:id', discussionController.votesPost);
 
     app.get('/discussion/create', discussionController.createGet);
     app.post('/discussion/create', discussionController.createPost);
