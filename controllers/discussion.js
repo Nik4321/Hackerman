@@ -5,7 +5,7 @@ const RatingDiscussions = require('mongoose').model('RatingsDiscussions');
 module.exports = {
 
     discussionsGet: (req, res) => {
-        Discussion.find({}).sort({date: -1}).populate('author').then(discussions => {
+        Discussion.find({}).sort({date: -1}).limit(20).populate('author').then(discussions => {
             res.render('discussion/listAll', {discussions: discussions});
         });
     },
