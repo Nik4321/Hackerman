@@ -1,6 +1,5 @@
 const News = require('mongoose').model('News');
 const ReplyingNews = require('mongoose').model('ReplyingNews');
-const RatingNews = require('mongoose').model('RatingsNews');
 
 module.exports = {
 
@@ -88,22 +87,9 @@ module.exports = {
 
         News.findById(id).populate('author').then(news => {
             ReplyingNews.find({idNews: news._id}).populate('author').then(replies => {
-                RatingNews.find({idNews: news._id}).then(ratings => {
-                    let count = 0;
-                    let max = 0;
-                    ratings.forEach(
-                        function avg (value) {
-                            count++;
-                            max += value.rating;
 
-                        }
-                    );
-                    let average = max / count;
-                    let fixedAverage = (Number(average.toFixed(2)));
-
-                    if (!req.user) {
-                        res.render('news/details', {
-                            rating: fixedAverage,
+                if (!req.user) {
+                    res.render('news/details', {
                             news: news,
                             replies: replies,
                             isUserAuthorized: false
@@ -112,15 +98,12 @@ module.exports = {
                    }
                    let isUserAuthorized = req.user.isAdmin;
                    res.render('news/details', {
-                       rating: fixedAverage,
                        news: news,
                        replies: replies,
                        isUserAuthorized: isUserAuthorized
                    });
-                });
             });
         }).catch(next);
-
     },    
 
     editGet: (req, res, next) => {
@@ -273,47 +256,6 @@ module.exports = {
                     }
                 });
             }).catch(next);
-        });
-    },
-
-    votesPost: (req, res) => {
-        let id = req.params.id;
-
-        if(!req.isAuthenticated()) {
-            req.session.returnUrl = `/news/details/${id}`;
-
-            res.render('user/login', {error: 'Must be logged in to do that'});
-            return;
-        }
-
-        let voteArgs = req.body;
-        let userId = req.user.id;
-
-        let rating = {
-            rating: voteArgs.rating,
-            author: userId,
-            idNews: id
-        };
-    
-        News.findById({_id: id}).then(news => {
-            RatingNews.findOne({author : req.user._id }).then( ratingFound => {
-                if (ratingFound) {
-                    // Remove this if you don't wanna update the rating
-                    RatingNews.update({author: req.user._id}, {$set: {
-                        rating: voteArgs.rating
-                    }}).then( () => {
-                        res.redirect(`/news/details/${id}`);
-                        return;
-                    });
-                    // Actually don't touch it.
-                } else if (ratingFound === null) {
-                    console.log('here');
-                    RatingNews.create(rating).then(rating => {
-                        news.rating.push(rating);
-                        res.redirect(`/news/details/${id}`);
-                    });
-                }
-            });
         });
     }
 };

@@ -15,7 +15,6 @@
                         {{news.author.fullName}} : {{news.date}}
                     </p>
 
-
                     <footer>
                         <div class="pull-right">
                             {{#if isUserAuthorized}}
@@ -25,22 +24,7 @@
                             <a class="btn btn-default btn-xs" href="/news/listAll/">Back &raquo;</a>
                         </div>
                     </footer>
-                    <form method="POST" action="/news/details/rating/{{news.id}}">
-                        <fieldset>
-                            <select name="rating">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                            </select>
-                            <button type="submit" class="btn btn-cool">Vote</button>
-                        </fieldset>
-                    </form>
                 </article>
-                {{rating}}
-
 
                 {{#each replies}}
                 <div class="replyMain">
