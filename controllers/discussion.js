@@ -1,6 +1,5 @@
 const Discussion = require('mongoose').model('Discussion');
 const ReplyingDiscussions = require('mongoose').model('ReplyingDiscussions');
-const RatingDiscussions = require('mongoose').model('RatingsDiscussions');
 
 module.exports = {
 
@@ -75,22 +74,9 @@ module.exports = {
 
         Discussion.findById(id).populate('author').then(discussion => {
             ReplyingDiscussions.find({idDiscussion: discussion._id}).populate('author').then(replies => {
-                RatingDiscussions.find({idDiscussion: discussion._id}).then(ratings => {
-
-                    let count = 0;
-                    let max = 0;
-                    ratings.forEach(
-                        function avg(value) {
-                            count++;
-                            max += value.rating;
-                        }
-                    );
-                    let average = max / count;
-                    let fixedAverage = (Number(average.toFixed(2)));
 
                     if (!req.user) {
                         res.render('discussion/details', {
-                            rating: fixedAverage,
                             discussion: discussion,
                             replies: replies,
                             isUserAuthorized: false
@@ -105,7 +91,6 @@ module.exports = {
                         isUserAuthorized: isUserAuthorized
                     });
                 });
-            });
         }).catch(next);
 
     },
@@ -243,43 +228,4 @@ module.exports = {
             }).catch(next);
         });
     },
-    votesPost: (req, res) => {
-        let id = req.params.id;
-
-        if(!req.isAuthenticated()) {
-            req.session.returnUrl = `/discussion/details/${id}`;
-
-            res.render('user/login', {error: 'Must be logged in to do that'});
-            return;
-        }
-
-        let voteArgs = req.body;
-        let userId = req.user.id;
-
-        let rating = {
-            rating: voteArgs.rating,
-            author: userId,
-            idNews: id
-        };
-
-        Discussion.findById({_id: id}).then(discussion => {
-            RatingDiscussions.findOne({author : req.user._id }).then( rating => {
-
-                if (rating) {
-                    RatingDiscussions.update({author: req.user._id}, {$set: {
-                        rating: voteArgs.rating
-                    }}).then( () => {
-                        res.redirect(`/discussion/details/${id}`);
-                        return;
-                    });
-                }
-            }).catch(() => {
-                RatingDiscussions.create(rating).then(rating => {
-                    discussion.rating.push(rating);
-                    res.redirect(`/discussion/details/${id}`);
-                });
-            });
-        });
-    },
-
-};
+ };
